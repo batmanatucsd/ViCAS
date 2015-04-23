@@ -1,0 +1,165 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CHAN_LOGDATA	log.py	/^CHAN_LOGDATA = 2$/;"	v
+CHAN_SETTINGS	log.py	/^CHAN_SETTINGS = 1$/;"	v
+CHAN_TOC	log.py	/^CHAN_TOC = 0$/;"	v
+CMD_APPEND_BLOCK	log.py	/^CMD_APPEND_BLOCK = 1$/;"	v
+CMD_CREATE_BLOCK	log.py	/^CMD_CREATE_BLOCK = 0$/;"	v
+CMD_DELETE_BLOCK	log.py	/^CMD_DELETE_BLOCK = 2$/;"	v
+CMD_RESET_LOGGING	log.py	/^CMD_RESET_LOGGING = 5$/;"	v
+CMD_START_LOGGING	log.py	/^CMD_START_LOGGING = 3$/;"	v
+CMD_STOP_LOGGING	log.py	/^CMD_STOP_LOGGING = 4$/;"	v
+CMD_TOC_ELEMENT	log.py	/^CMD_TOC_ELEMENT = 0$/;"	v
+CMD_TOC_ELEMENT	toc.py	/^CMD_TOC_ELEMENT = 0$/;"	v
+CMD_TOC_INFO	log.py	/^CMD_TOC_INFO = 1$/;"	v
+CMD_TOC_INFO	toc.py	/^CMD_TOC_INFO = 1$/;"	v
+CONNECTED	__init__.py	/^    CONNECTED = 2$/;"	v	class:State
+Commander	commander.py	/^class Commander():$/;"	c
+Console	console.py	/^class Console:$/;"	c
+Crazyflie	__init__.py	/^class Crazyflie():$/;"	c
+DISCONNECTED	__init__.py	/^    DISCONNECTED = 0$/;"	v	class:State
+GET_TOC_ELEMENT	log.py	/^GET_TOC_ELEMENT = "GET_TOC_ELEMENT"$/;"	v
+GET_TOC_ELEMENT	toc.py	/^GET_TOC_ELEMENT = "GET_TOC_ELEMENT"$/;"	v
+GET_TOC_INF	log.py	/^GET_TOC_INF = "GET_TOC_INFO"$/;"	v
+GET_TOC_INFO	toc.py	/^GET_TOC_INFO = "GET_TOC_INFO"$/;"	v
+IDLE	log.py	/^IDLE = "IDLE"$/;"	v
+IDLE	param.py	/^IDLE = 0$/;"	v
+IDLE	toc.py	/^IDLE = "IDLE"$/;"	v
+INITIALIZED	__init__.py	/^    INITIALIZED = 1$/;"	v	class:State
+Log	log.py	/^class Log():$/;"	c
+LogEntry	log.py	/^class LogEntry:$/;"	c
+LogTocElement	log.py	/^class LogTocElement:$/;"	c
+MAX_LOG_DATA_PACKET_SIZE	log.py	/^MAX_LOG_DATA_PACKET_SIZE = 30$/;"	v
+Param	param.py	/^class Param():$/;"	c
+ParamTocElement	param.py	/^class ParamTocElement:$/;"	c
+READ_CHANNEL	param.py	/^READ_CHANNEL = 1$/;"	v
+RO_ACCESS	param.py	/^    RO_ACCESS = 1$/;"	v	class:ParamTocElement
+RO_ACCESS	toc.py	/^    RO_ACCESS = 1$/;"	v	class:TocElement
+RW_ACCESS	param.py	/^    RW_ACCESS = 0$/;"	v	class:ParamTocElement
+RW_ACCESS	toc.py	/^    RW_ACCESS = 0$/;"	v	class:TocElement
+SETUP_FINISHED	__init__.py	/^    SETUP_FINISHED = 3$/;"	v	class:State
+State	__init__.py	/^class State:$/;"	c
+TOC_CHANNEL	param.py	/^TOC_CHANNEL = 0$/;"	v
+TOC_CHANNEL	toc.py	/^TOC_CHANNEL = 0$/;"	v
+TOC_GETCRC32	param.py	/^TOC_GETCRC32 = 2$/;"	v
+TOC_GETNEXT	param.py	/^TOC_GETNEXT = 1$/;"	v
+TOC_RESET	param.py	/^TOC_RESET = 0$/;"	v
+Toc	toc.py	/^class Toc:$/;"	c
+TocCache	toccache.py	/^class TocCache():$/;"	c
+TocElement	toc.py	/^class TocElement:$/;"	c
+TocFetcher	toc.py	/^class TocFetcher:$/;"	c
+WAIT_READ	param.py	/^WAIT_READ = 2$/;"	v
+WAIT_TOC	param.py	/^WAIT_TOC = 1$/;"	v
+WAIT_WRITE	param.py	/^WAIT_WRITE = 3$/;"	v
+WRITE_CHANNEL	param.py	/^WRITE_CHANNEL = 2$/;"	v
+_IncomingPacketHandler	__init__.py	/^class _IncomingPacketHandler(Thread):$/;"	c
+_ParamUpdater	param.py	/^class _ParamUpdater(Thread):$/;"	c
+__all__	__init__.py	/^__all__ = ['Crazyflie']$/;"	v
+__all__	commander.py	/^__all__ = ['Commander']$/;"	v
+__all__	console.py	/^__all__ = ['Console']$/;"	v
+__all__	log.py	/^__all__ = ['Log', 'LogTocElement']$/;"	v
+__all__	param.py	/^__all__ = ['Param', 'ParamTocElement']$/;"	v
+__all__	toc.py	/^__all__ = ['TocElement', 'Toc', 'TocFetcher']$/;"	v
+__all__	toccache.py	/^__all__ = ['TocCache']$/;"	v
+__author__	__init__.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	commander.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	console.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	log.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	param.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	toc.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	toccache.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__init__	__init__.py	/^    def __init__(self, cf):$/;"	m	class:_IncomingPacketHandler
+__init__	__init__.py	/^    def __init__(self, link=None, ro_cache=None, rw_cache=None):$/;"	m	class:Crazyflie
+__init__	commander.py	/^    def __init__(self, crazyflie=None):$/;"	m	class:Commander
+__init__	console.py	/^    def __init__(self, crazyflie):$/;"	m	class:Console
+__init__	log.py	/^    def __init__(self, crazyflie, logconf):$/;"	m	class:LogEntry
+__init__	log.py	/^    def __init__(self, crazyflie=None):$/;"	m	class:Log
+__init__	log.py	/^    def __init__(self, data=None):$/;"	m	class:LogTocElement
+__init__	param.py	/^    def __init__(self, cf, updatedCallback):$/;"	m	class:_ParamUpdater
+__init__	param.py	/^    def __init__(self, crazyflie):$/;"	m	class:Param
+__init__	param.py	/^    def __init__(self, data=None):$/;"	m	class:ParamTocElement
+__init__	toc.py	/^    def __init__(self):$/;"	m	class:Toc
+__init__	toc.py	/^    def __init__(self, crazyflie, elementClass, port, tocHolder,$/;"	m	class:TocFetcher
+__init__	toccache.py	/^    def __init__(self, ro_cache=None, rw_cache=None):$/;"	m	class:TocCache
+_check_for_answers	__init__.py	/^    def _check_for_answers(self, pk):$/;"	m	class:Crazyflie
+_check_for_initial_packet_cb	__init__.py	/^    def _check_for_initial_packet_cb(self, data):$/;"	m	class:Crazyflie
+_decoder	toccache.py	/^    def _decoder(self, o):$/;"	m	class:TocCache
+_encoder	toccache.py	/^    def _encoder(self, o):$/;"	m	class:TocCache
+_get_element	toc.py	/^    def _get_element(self, group, name):$/;"	m	class:Toc
+_link_error_cb	__init__.py	/^    def _link_error_cb(self, errmsg):$/;"	m	class:Crazyflie
+_link_quality_cb	__init__.py	/^    def _link_quality_cb(self, percentage):$/;"	m	class:Crazyflie
+_log_toc_updated_cb	__init__.py	/^    def _log_toc_updated_cb(self):$/;"	m	class:Crazyflie
+_new_packet_cb	log.py	/^    def _new_packet_cb(self, packet):$/;"	m	class:Log
+_new_packet_cb	param.py	/^    def _new_packet_cb(self, pk):$/;"	m	class:_ParamUpdater
+_new_packet_cb	toc.py	/^    def _new_packet_cb(self, packet):$/;"	m	class:TocFetcher
+_no_answer_do_retry	__init__.py	/^    def _no_answer_do_retry(self, pk):$/;"	m	class:Crazyflie
+_param_toc_updated_cb	__init__.py	/^    def _param_toc_updated_cb(self):$/;"	m	class:Crazyflie
+_param_updated	param.py	/^    def _param_updated(self, pk):$/;"	m	class:Param
+_request_toc_element	toc.py	/^    def _request_toc_element(self, index):$/;"	m	class:TocFetcher
+_start_connection_setup	__init__.py	/^    def _start_connection_setup(self):$/;"	m	class:Crazyflie
+_toc_fetch_finished	toc.py	/^    def _toc_fetch_finished(self):$/;"	m	class:TocFetcher
+access	toc.py	/^    access = RO_ACCESS$/;"	v	class:TocElement
+add_element	toc.py	/^    def add_element(self, element):$/;"	m	class:Toc
+add_header_callback	__init__.py	/^    def add_header_callback(self, cb, port, channel, port_mask=0xFF,$/;"	m	class:_IncomingPacketHandler
+add_port_callback	__init__.py	/^    def add_port_callback(self, port, cb):$/;"	m	class:Crazyflie
+add_port_callback	__init__.py	/^    def add_port_callback(self, port, cb):$/;"	m	class:_IncomingPacketHandler
+add_update_callback	param.py	/^    def add_update_callback(self, paramname, cb):$/;"	m	class:Param
+blockIdCounter	log.py	/^    blockIdCounter = 1$/;"	v	class:LogEntry
+clear	toc.py	/^    def clear(self):$/;"	m	class:Toc
+close	log.py	/^    def close(self):$/;"	m	class:LogEntry
+close_link	__init__.py	/^    def close_link(self):$/;"	m	class:Crazyflie
+connectSetupFinished	__init__.py	/^    connectSetupFinished = Caller()$/;"	v	class:Crazyflie
+connected	__init__.py	/^    connected = Caller()$/;"	v	class:Crazyflie
+connectionFailed	__init__.py	/^    connectionFailed = Caller()$/;"	v	class:Crazyflie
+connectionInitiated	__init__.py	/^    connectionInitiated = Caller()$/;"	v	class:Crazyflie
+connectionLost	__init__.py	/^    connectionLost = Caller()$/;"	v	class:Crazyflie
+create_log_packet	log.py	/^    def create_log_packet(self, logconf):$/;"	m	class:Log
+ctype	toc.py	/^    ctype = ""$/;"	v	class:TocElement
+disconnected	__init__.py	/^    disconnected = Caller()$/;"	v	class:Crazyflie
+fetch	toccache.py	/^    def fetch(self, crc):$/;"	m	class:TocCache
+get_cstring_from_id	log.py	/^    def get_cstring_from_id(ident):$/;"	m	class:LogTocElement
+get_element_by_complete_name	toc.py	/^    def get_element_by_complete_name(self, completeName):$/;"	m	class:Toc
+get_element_by_id	toc.py	/^    def get_element_by_id(self, ident):$/;"	m	class:Toc
+get_element_id	toc.py	/^    def get_element_id(self, completeName):$/;"	m	class:Toc
+get_id_from_cstring	log.py	/^    def get_id_from_cstring(s):$/;"	m	class:LogTocElement
+get_size_from_id	log.py	/^    def get_size_from_id(ident):$/;"	m	class:LogTocElement
+get_unpack_string_from_id	log.py	/^    def get_unpack_string_from_id(ident):$/;"	m	class:LogTocElement
+group	toc.py	/^    group = ""$/;"	v	class:TocElement
+ident	toc.py	/^    ident = 0$/;"	v	class:TocElement
+incoming	console.py	/^    def incoming(self, packet):$/;"	m	class:Console
+insert	toccache.py	/^    def insert(self, crc, toc):$/;"	m	class:TocCache
+linkQuality	__init__.py	/^    linkQuality = Caller()$/;"	v	class:Crazyflie
+logger	__init__.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	log.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	param.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	toc.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	toccache.py	/^logger = logging.getLogger(__name__)$/;"	v
+name	toc.py	/^    name = ""$/;"	v	class:TocElement
+open_link	__init__.py	/^    def open_link(self, link_uri):$/;"	m	class:Crazyflie
+pytype	toc.py	/^    pytype = ""$/;"	v	class:TocElement
+receivedChar	console.py	/^    receivedChar = Caller()$/;"	v	class:Console
+receivedPacket	__init__.py	/^    receivedPacket = Caller()$/;"	v	class:Crazyflie
+refresh_toc	log.py	/^    def refresh_toc(self, refreshDoneCallback, toc_cache):$/;"	m	class:Log
+refresh_toc	param.py	/^    def refresh_toc(self, refreshDoneCallback, toc_cache):$/;"	m	class:Param
+remove_port_callback	__init__.py	/^    def remove_port_callback(self, port, cb):$/;"	m	class:Crazyflie
+remove_port_callback	__init__.py	/^    def remove_port_callback(self, port, cb):$/;"	m	class:_IncomingPacketHandler
+request_param_update	param.py	/^    def request_param_update(self, completeName):$/;"	m	class:Param
+request_param_update	param.py	/^    def request_param_update(self, varid):$/;"	m	class:_ParamUpdater
+run	__init__.py	/^    def run(self):$/;"	m	class:_IncomingPacketHandler
+run	param.py	/^    def run(self):$/;"	m	class:_ParamUpdater
+send_packet	__init__.py	/^    def send_packet(self, pk, expect_answer=False):$/;"	m	class:Crazyflie
+send_setpoint	commander.py	/^    def send_setpoint(self, roll, pitch, yaw, thrust):$/;"	m	class:Commander
+set_client_xmode	commander.py	/^    def set_client_xmode(self, enabled):$/;"	m	class:Commander
+set_value	param.py	/^    def set_value(self, completeName, value):$/;"	m	class:Param
+start	log.py	/^    def start(self):$/;"	m	class:LogEntry
+start	toc.py	/^    def start(self):$/;"	m	class:TocFetcher
+state	__init__.py	/^    state = State.DISCONNECTED$/;"	v	class:Crazyflie
+stop	log.py	/^    def stop(self):$/;"	m	class:LogEntry
+toc	param.py	/^    toc = Toc()$/;"	v	class:Param
+types	log.py	/^    types = {0x01: ("uint8_t",  '<B', 1),$/;"	v	class:LogTocElement
+types	param.py	/^    types = {0x08: ("uint8_t",  '<B'),$/;"	v	class:ParamTocElement
+unpack_log_data	log.py	/^    def unpack_log_data(self, logData):$/;"	m	class:LogEntry

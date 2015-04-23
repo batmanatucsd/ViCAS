@@ -1,0 +1,525 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AboutDialog	ui/dialogs/about.py	/^class AboutDialog(QtGui.QWidget, about_widget_class):$/;"	c
+AttitudeIndicator	ui/widgets/ai.py	/^class AttitudeIndicator(QtGui.QWidget):$/;"	c
+BootloaderDialog	ui/dialogs/bootloader.py	/^class BootloaderDialog(QtGui.QWidget, service_dialog_class):$/;"	c
+COLD_CONNECT	ui/dialogs/bootloader.py	/^    COLD_CONNECT    = 2$/;"	v	class:UIState
+CONNECTED	ui/main.py	/^    CONNECTED = 2$/;"	v	class:UIState
+CONNECTING	ui/dialogs/bootloader.py	/^    CONNECTING      = 5$/;"	v	class:UIState
+CONNECTING	ui/main.py	/^    CONNECTING = 1$/;"	v	class:UIState
+CONNECT_FAILED	ui/dialogs/bootloader.py	/^    CONNECT_FAILED  = 1$/;"	v	class:UIState
+CTYPE_FIELD	ui/dialogs/logconfigdialogue.py	/^CTYPE_FIELD = 3$/;"	v
+Config	utils/config.py	/^class Config():$/;"	c
+ConfigManager	utils/config_manager.py	/^class ConfigManager():$/;"	c
+ConnectDialogue	ui/dialogs/connectiondialogue.py	/^class ConnectDialogue(QtGui.QWidget, connect_widget_class):$/;"	c
+ConsoleTab	ui/tabs/ConsoleTab.py	/^class ConsoleTab(Tab, console_tab_class):$/;"	c
+ConsoleToolbox	ui/toolboxes/ConsoleToolbox.py	/^class ConsoleToolbox(QtGui.QWidget, console_class):$/;"	c
+CrazyloadThread	ui/dialogs/bootloader.py	/^class CrazyloadThread(QThread):$/;"	c
+CrtpSharkToolbox	ui/toolboxes/CrtpSharkToolbox.py	/^class CrtpSharkToolbox(QtGui.QWidget, param_tab_class):$/;"	c
+DISCONNECTED	ui/dialogs/bootloader.py	/^    DISCONNECTED    = 0$/;"	v	class:UIState
+DISCONNECTED	ui/main.py	/^    DISCONNECTED = 0$/;"	v	class:UIState
+DebugDriverToolbox	ui/toolboxes/DebugDriverToolbox.py	/^class DebugDriverToolbox(QtGui.QWidget, debugdriver_tab_class):$/;"	c
+Example	ui/widgets/ai.py	/^    class Example(QtGui.QWidget):$/;"	c	class:AttitudeIndicator
+FLASHING	ui/dialogs/bootloader.py	/^    FLASHING        = 3$/;"	v	class:UIState
+FastPlotWidget	ui/widgets/rtplotwidget.py	/^class FastPlotWidget(QtGui.QWidget):$/;"	c
+FlightTab	ui/tabs/FlightTab.py	/^class FlightTab(Tab, flight_tab_class):$/;"	c
+ID_FIELD	ui/dialogs/logconfigdialogue.py	/^ID_FIELD = 1$/;"	v
+InputConfigDialogue	ui/dialogs/inputconfigdialogue.py	/^class InputConfigDialogue(QtGui.QWidget, inputconfig_widget_class):$/;"	c
+JoystickReader	utils/input.py	/^class JoystickReader(QThread):$/;"	c
+LEGEND_ON_BOTTOM	ui/widgets/plotwidget.py	/^    LEGEND_ON_BOTTOM = 1$/;"	v	class:PlotWidget
+LEGEND_ON_BOTTOM	ui/widgets/rtplotwidget.py	/^    LEGEND_ON_BOTTOM = 1$/;"	v	class:FastPlotWidget
+LEGEND_ON_RIGHT	ui/widgets/plotwidget.py	/^    LEGEND_ON_RIGHT = 2$/;"	v	class:PlotWidget
+LEGEND_ON_RIGHT	ui/widgets/rtplotwidget.py	/^    LEGEND_ON_RIGHT = 2$/;"	v	class:FastPlotWidget
+LogConfig	utils/logconfigreader.py	/^class LogConfig():$/;"	c
+LogConfigDialogue	ui/dialogs/logconfigdialogue.py	/^class LogConfigDialogue(QtGui.QWidget, logconfig_widget_class):$/;"	c
+LogConfigReader	utils/logconfigreader.py	/^class LogConfigReader():$/;"	c
+LogTab	ui/tabs/LogTab.py	/^class LogTab(Tab, param_tab_class):$/;"	c
+LogVariable	utils/logconfigreader.py	/^class LogVariable():$/;"	c
+MAX_THRUST	ui/tabs/FlightTab.py	/^MAX_THRUST = 65365.0$/;"	v
+MEM_TYPE	utils/logconfigreader.py	/^    MEM_TYPE = 1$/;"	v	class:LogVariable
+MainUI	ui/main.py	/^class MainUI(QtGui.QMainWindow, main_window_class):$/;"	c
+MyDockWidget	ui/main.py	/^class MyDockWidget(QtGui.QDockWidget):$/;"	c
+NAME_FIELD	ui/dialogs/logconfigdialogue.py	/^NAME_FIELD = 0$/;"	v
+PITCH_AXIS_ID	utils/input.py	/^    PITCH_AXIS_ID  = 0$/;"	v	class:JoystickReader
+PTYPE_FIELD	ui/dialogs/logconfigdialogue.py	/^PTYPE_FIELD = 2$/;"	v
+ParamTab	ui/tabs/ParamTab.py	/^class ParamTab(Tab, param_tab_class):$/;"	c
+PlotAxis	ui/widgets/rtplotwidget.py	/^class PlotAxis:$/;"	c
+PlotDataSet	ui/widgets/rtplotwidget.py	/^class PlotDataSet:$/;"	c
+PlotTab	ui/tabs/PlotTab.py	/^class PlotTab(Tab, plot_tab_class):$/;"	c
+PlotTest	plottest.py	/^class PlotTest(QtGui.QWidget):$/;"	c
+PlotWidget	ui/widgets/plotwidget.py	/^class PlotWidget(QtGui.QWidget, plot_widget_class):$/;"	c
+PluginHelper	ui/pluginhelper.py	/^class PluginHelper():$/;"	c
+PyGameReader	utils/pygamereader.py	/^class PyGameReader():$/;"	c
+RESET	ui/dialogs/bootloader.py	/^    RESET           = 4$/;"	v	class:UIState
+ROLL_AXIS_ID	utils/input.py	/^    ROLL_AXIS_ID   = 1$/;"	v	class:JoystickReader
+RawJoystickReader	ui/dialogs/inputconfigdialogue.py	/^class RawJoystickReader(QThread):$/;"	c
+ScannerThread	ui/dialogs/connectiondialogue.py	/^class ScannerThread(QThread):$/;"	c
+Singleton	utils/singleton.py	/^def Singleton(cls):$/;"	f
+THRUST_AXIS_ID	utils/input.py	/^    THRUST_AXIS_ID = 3$/;"	v	class:JoystickReader
+TOC_TYPE	utils/logconfigreader.py	/^    TOC_TYPE = 0$/;"	v	class:LogVariable
+Tab	ui/tab.py	/^class Tab(QtGui.QWidget):$/;"	c
+UIState	ui/dialogs/bootloader.py	/^class UIState:$/;"	c
+UIState	ui/main.py	/^class UIState:$/;"	c
+UI_DATA_UPDATE_FPS	ui/tabs/FlightTab.py	/^    UI_DATA_UPDATE_FPS = 10$/;"	v	class:FlightTab
+VERSION	__init__.py	/^	VERSION="dev"$/;"	v
+VERSION	version.py	/^VERSION='2013.4.2'/;"	v
+YAW_AXIS_ID	utils/input.py	/^    YAW_AXIS_ID    = 2$/;"	v	class:JoystickReader
+__all__	cfclient.py	/^__all__ = ['']$/;"	v
+__all__	ui/__init__.py	/^__all__ = []$/;"	v
+__all__	ui/dialogs/about.py	/^__all__ = ['AboutDialog']$/;"	v
+__all__	ui/dialogs/bootloader.py	/^__all__ = ['BootloaderDialog']$/;"	v
+__all__	ui/dialogs/connectiondialogue.py	/^__all__ = ['ConnectionDialogue']$/;"	v
+__all__	ui/dialogs/inputconfigdialogue.py	/^__all__ = ['InputConfigDialogue']$/;"	v
+__all__	ui/dialogs/logconfigdialogue.py	/^__all__ = ['LogConfigDialogue']$/;"	v
+__all__	ui/main.py	/^__all__ = ['MainUI']$/;"	v
+__all__	ui/pluginhelper.py	/^__all__ = ['PluginHelper']$/;"	v
+__all__	ui/tab.py	/^__all__ = ['Tab']$/;"	v
+__all__	ui/tabs/ConsoleTab.py	/^__all__ = ['ConsoleTab']$/;"	v
+__all__	ui/tabs/FlightTab.py	/^__all__ = ['FlightTab']$/;"	v
+__all__	ui/tabs/LogTab.py	/^__all__ = ['LogTab']$/;"	v
+__all__	ui/tabs/ParamTab.py	/^__all__ = ['ParamTab']$/;"	v
+__all__	ui/tabs/PlotTab.py	/^__all__ = ['PlotTab']$/;"	v
+__all__	ui/tabs/__init__.py	/^__all__ = []$/;"	v
+__all__	ui/toolboxes/ConsoleToolbox.py	/^__all__ = ['ConsoleToolbox']$/;"	v
+__all__	ui/toolboxes/CrtpSharkToolbox.py	/^__all__ = ['CrtpSharkBoolbox']$/;"	v
+__all__	ui/toolboxes/DebugDriverToolbox.py	/^__all__ = ['DebugDriverToolbox']$/;"	v
+__all__	ui/toolboxes/__init__.py	/^__all__ = []$/;"	v
+__all__	ui/widgets/ai.py	/^__all__ = ['AttitudeIndicator']$/;"	v
+__all__	ui/widgets/plotwidget.py	/^__all__ = ['PlotWidget']$/;"	v
+__all__	ui/widgets/rtplotwidget.py	/^__all__ = ['PlotAxis', 'PlotDataSet','FastPlotWidget']$/;"	v
+__all__	utils/config.py	/^__all__ = ['Config']$/;"	v
+__all__	utils/config_manager.py	/^__all__ = ['ConfigManager']$/;"	v
+__all__	utils/input.py	/^__all__ = ['JoystickReader']$/;"	v
+__all__	utils/logconfigreader.py	/^__all__ = ['LogVariable', 'LogConfigReader', 'LogConfig']$/;"	v
+__all__	utils/pygamereader.py	/^__all__ = ['PyGameReader']$/;"	v
+__all__	utils/singleton.py	/^__all__ = ['Singleton']$/;"	v
+__author__	cfclient.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/__init__.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/dialogs/about.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/dialogs/bootloader.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/dialogs/connectiondialogue.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/dialogs/inputconfigdialogue.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/dialogs/logconfigdialogue.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/main.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/pluginhelper.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tab.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tabs/ConsoleTab.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tabs/FlightTab.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tabs/LogTab.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tabs/ParamTab.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tabs/PlotTab.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/tabs/__init__.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/toolboxes/ConsoleToolbox.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/toolboxes/CrtpSharkToolbox.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/toolboxes/DebugDriverToolbox.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/toolboxes/__init__.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/widgets/ai.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/widgets/plotwidget.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	ui/widgets/rtplotwidget.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	utils/config.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	utils/config_manager.py	/^__author__ = 'Bitcraze AB\/Allyn Bauer'$/;"	v
+__author__	utils/input.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	utils/logconfigreader.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	utils/pygamereader.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__author__	utils/singleton.py	/^__author__ = 'Bitcraze AB'$/;"	v
+__del__	ui/dialogs/bootloader.py	/^    def __del__(self):$/;"	m	class:CrazyloadThread	file:
+__init__	plottest.py	/^    def __init__(self):$/;"	m	class:PlotTest
+__init__	ui/dialogs/about.py	/^    def __init__(self, helper, *args):$/;"	m	class:AboutDialog
+__init__	ui/dialogs/bootloader.py	/^    def __init__(self):$/;"	m	class:CrazyloadThread
+__init__	ui/dialogs/bootloader.py	/^    def __init__(self, helper, *args):$/;"	m	class:BootloaderDialog
+__init__	ui/dialogs/connectiondialogue.py	/^    def __init__(self):$/;"	m	class:ScannerThread
+__init__	ui/dialogs/connectiondialogue.py	/^    def __init__(self, *args):$/;"	m	class:ConnectDialogue
+__init__	ui/dialogs/inputconfigdialogue.py	/^    def __init__(self, joystickReader):$/;"	m	class:RawJoystickReader
+__init__	ui/dialogs/inputconfigdialogue.py	/^    def __init__(self, joystickReader, *args):$/;"	m	class:InputConfigDialogue
+__init__	ui/dialogs/logconfigdialogue.py	/^    def __init__(self, helper, *args):$/;"	m	class:LogConfigDialogue
+__init__	ui/main.py	/^    def __init__(self, *args):$/;"	m	class:MainUI
+__init__	ui/main.py	/^    def __init__(self, *args):$/;"	m	class:MyDockWidget
+__init__	ui/pluginhelper.py	/^    def __init__(self):$/;"	m	class:PluginHelper
+__init__	ui/tab.py	/^    def __init__(self):$/;"	m	class:Tab
+__init__	ui/tabs/ConsoleTab.py	/^    def __init__(self, tabWidget, helper, *args):$/;"	m	class:ConsoleTab
+__init__	ui/tabs/FlightTab.py	/^    def __init__(self, tabWidget, helper, *args):$/;"	m	class:FlightTab
+__init__	ui/tabs/LogTab.py	/^    def __init__(self, tabWidget, helper, *args):$/;"	m	class:LogTab
+__init__	ui/tabs/ParamTab.py	/^    def __init__(self, tabWidget, helper, *args):$/;"	m	class:ParamTab
+__init__	ui/tabs/PlotTab.py	/^    def __init__(self, tabWidget, helper, *args):$/;"	m	class:PlotTab
+__init__	ui/toolboxes/ConsoleToolbox.py	/^    def __init__(self, helper, *args):$/;"	m	class:ConsoleToolbox
+__init__	ui/toolboxes/CrtpSharkToolbox.py	/^    def __init__(self, helper, *args):$/;"	m	class:CrtpSharkToolbox
+__init__	ui/toolboxes/DebugDriverToolbox.py	/^    def __init__(self, helper, *args):$/;"	m	class:DebugDriverToolbox
+__init__	ui/widgets/ai.py	/^        def __init__(self):$/;"	m	class:AttitudeIndicator.Example
+__init__	ui/widgets/ai.py	/^    def __init__(self):$/;"	m	class:AttitudeIndicator
+__init__	ui/widgets/plotwidget.py	/^    def __init__(self, parent=None, fps=100, title="", *args):$/;"	m	class:PlotWidget
+__init__	ui/widgets/rtplotwidget.py	/^    def __init__(self, parent=None, fps=100):$/;"	m	class:FastPlotWidget
+__init__	ui/widgets/rtplotwidget.py	/^    def __init__(self, title, color, yrange):$/;"	m	class:PlotDataSet
+__init__	ui/widgets/rtplotwidget.py	/^    def __init__(self, x, color = QtCore.Qt.black):$/;"	m	class:PlotAxis
+__init__	utils/config.py	/^    def __init__(self):$/;"	m	class:Config
+__init__	utils/config_manager.py	/^    def __init__(self):$/;"	m	class:ConfigManager
+__init__	utils/input.py	/^    def __init__(self):$/;"	m	class:JoystickReader
+__init__	utils/logconfigreader.py	/^    def __init__(self):$/;"	m	class:LogConfigReader
+__init__	utils/logconfigreader.py	/^    def __init__(self, configname, period = 0, filename = ""):$/;"	m	class:LogConfig
+__init__	utils/logconfigreader.py	/^    def __init__(self, name = "", fetchAs = "uint8_t", varType = 0, storedAs = "", address = 0):$/;"	m	class:LogVariable
+__init__	utils/pygamereader.py	/^    def __init__(self):$/;"	m	class:PyGameReader
+__str__	ui/widgets/rtplotwidget.py	/^    def __str__(self):$/;"	m	class:PlotAxis	file:
+__str__	utils/logconfigreader.py	/^    def __str__(self):$/;"	m	class:LogConfig	file:
+__str__	utils/logconfigreader.py	/^    def __str__(self):$/;"	m	class:LogVariable	file:
+_do_device_discovery	utils/input.py	/^    def _do_device_discovery(self):$/;"	m	class:JoystickReader
+_imu_data_received	ui/tabs/FlightTab.py	/^    def _imu_data_received(self, data):$/;"	m	class:FlightTab
+_imu_data_signal	ui/tabs/FlightTab.py	/^    _imu_data_signal = pyqtSignal(object)$/;"	v	class:FlightTab
+_inputconfig_selected	ui/main.py	/^    def _inputconfig_selected(self, checked):$/;"	m	class:MainUI
+_inputdevice_selected	ui/main.py	/^    def _inputdevice_selected(self, checked):$/;"	m	class:MainUI
+_load_input_data	ui/main.py	/^    def _load_input_data(self):$/;"	m	class:MainUI
+_motor_data_received	ui/tabs/FlightTab.py	/^    def _motor_data_received(self, data):$/;"	m	class:FlightTab
+_motor_data_signal	ui/tabs/FlightTab.py	/^    _motor_data_signal = pyqtSignal(object)$/;"	v	class:FlightTab
+_read_config	utils/config.py	/^    def _read_config(self):$/;"	m	class:Config
+_read_distfile	utils/config.py	/^    def _read_distfile(self):$/;"	m	class:Config
+_reload_configs	ui/main.py	/^    def _reload_configs(self, newConfigName):$/;"	m	class:MainUI
+_rescan_devices	ui/main.py	/^    def _rescan_devices(self):$/;"	m	class:MainUI
+_reset_mapping	ui/dialogs/inputconfigdialogue.py	/^    def _reset_mapping(self):$/;"	m	class:InputConfigDialogue
+_trim_pitch_changed	ui/tabs/FlightTab.py	/^    def _trim_pitch_changed(self, value):$/;"	m	class:FlightTab
+_trim_roll_changed	ui/tabs/FlightTab.py	/^    def _trim_roll_changed(self, value):$/;"	m	class:FlightTab
+_ui_connection_fail	ui/dialogs/bootloader.py	/^    def _ui_connection_fail(self, message):$/;"	m	class:BootloaderDialog
+_update_input	ui/main.py	/^    def _update_input(self, device = "", config = ""):$/;"	m	class:MainUI
+_update_trim_pitch	utils/input.py	/^    def _update_trim_pitch(self, trim_pitch):$/;"	m	class:JoystickReader
+_update_trim_roll	utils/input.py	/^    def _update_trim_roll(self, trim_roll):$/;"	m	class:JoystickReader
+_zero_output	utils/pygamereader.py	/^    def _zero_output(self):$/;"	m	class:PyGameReader
+addData	ui/widgets/rtplotwidget.py	/^    def addData(self, data):$/;"	m	class:PlotDataSet
+addDataset	ui/widgets/plotwidget.py	/^    def addDataset(self, dataset):$/;"	m	class:PlotWidget
+addDataset	ui/widgets/rtplotwidget.py	/^    def addDataset(self, dataset):$/;"	m	class:FastPlotWidget
+addDataset	ui/widgets/rtplotwidget.py	/^    def addDataset(self, ds):$/;"	m	class:PlotAxis
+addNewVar	ui/dialogs/logconfigdialogue.py	/^    def addNewVar(self, logTreeItem, target):$/;"	m	class:LogConfigDialogue
+addVariable	utils/logconfigreader.py	/^    def addVariable(self, var):$/;"	m	class:LogConfig
+adddata	plottest.py	/^    def adddata(self):$/;"	m	class:PlotTest
+available	ui/tabs/__init__.py	/^available = []$/;"	v
+batteryUpdatedSignal	ui/main.py	/^    batteryUpdatedSignal = pyqtSignal(object)$/;"	v	class:MainUI
+calUpdateFromInput	ui/tabs/FlightTab.py	/^    def calUpdateFromInput(self, rollCal, pitchCal):$/;"	m	class:FlightTab
+calUpdateSignal	utils/input.py	/^    calUpdateSignal = pyqtSignal(float, float)$/;"	v	class:JoystickReader
+cancel	ui/dialogs/connectiondialogue.py	/^    def cancel(self):$/;"	m	class:ConnectDialogue
+cancelConfigBox	ui/dialogs/inputconfigdialogue.py	/^    def cancelConfigBox(self, button):$/;"	m	class:InputConfigDialogue
+changeValue	ui/widgets/ai.py	/^        def changeValue(self, value):$/;"	m	class:AttitudeIndicator.Example
+changeXmode	ui/tabs/FlightTab.py	/^    def changeXmode(self, checked):$/;"	m	class:FlightTab
+checkAndEnableSave	ui/dialogs/inputconfigdialogue.py	/^    def checkAndEnableSave(self):$/;"	m	class:InputConfigDialogue
+checkAndEnableSaveButton	ui/dialogs/logconfigdialogue.py	/^    def checkAndEnableSaveButton(self):$/;"	m	class:LogConfigDialogue
+checksum256	ui/dialogs/bootloader.py	/^    def checksum256(self, st):$/;"	m	class:CrazyloadThread
+clearLog	ui/toolboxes/CrtpSharkToolbox.py	/^    def clearLog(self):$/;"	m	class:CrtpSharkToolbox
+closeAppRequest	ui/main.py	/^    def closeAppRequest(self):$/;"	m	class:MainUI
+closeEvent	ui/dialogs/bootloader.py	/^    def closeEvent(self, event):$/;"	m	class:BootloaderDialog
+closeEvent	ui/dialogs/inputconfigdialogue.py	/^    def closeEvent(self, event):$/;"	m	class:InputConfigDialogue
+closeEvent	ui/main.py	/^    def closeEvent(self, event):$/;"	m	class:MainUI
+closeEvent	ui/main.py	/^    def closeEvent(self, event):$/;"	m	class:MyDockWidget
+closed	ui/main.py	/^    closed = pyqtSignal()$/;"	v	class:MyDockWidget
+colors	ui/tabs/PlotTab.py	/^    colors = [QtCore.Qt.green, QtCore.Qt.blue, QtCore.Qt.magenta, QtCore.Qt.red, QtCore.Qt.black]$/;"	v	class:PlotTab
+conf_needs_reload	utils/config_manager.py	/^    conf_needs_reload = Caller()$/;"	v	class:ConfigManager
+configInputDevice	ui/main.py	/^    def configInputDevice(self):$/;"	m	class:MainUI
+configs_dir	utils/config_manager.py	/^    configs_dir = sys.path[1] + "\/input"$/;"	v	class:ConfigManager
+connectButtonClicked	ui/main.py	/^    def connectButtonClicked(self):$/;"	m	class:MainUI
+connected	ui/dialogs/bootloader.py	/^    def connected(self):$/;"	m	class:BootloaderDialog
+connected	ui/tabs/FlightTab.py	/^    def connected(self, linkURI):$/;"	m	class:FlightTab
+connected	ui/tabs/LogTab.py	/^    def connected(self, linkURI):$/;"	m	class:LogTab
+connected	ui/tabs/PlotTab.py	/^    def connected(self, link):$/;"	m	class:PlotTab
+connectedSignal	ui/dialogs/bootloader.py	/^    connectedSignal = pyqtSignal()$/;"	v	class:CrazyloadThread
+connectedSignal	ui/tabs/LogTab.py	/^    connectedSignal = pyqtSignal(str)$/;"	v	class:LogTab
+connectedSignal	ui/tabs/PlotTab.py	/^    connectedSignal = pyqtSignal(str)$/;"	v	class:PlotTab
+connectingSignal	ui/dialogs/bootloader.py	/^    connectingSignal = pyqtSignal()$/;"	v	class:CrazyloadThread
+connectionDone	ui/main.py	/^    def connectionDone(self, linkURI):$/;"	m	class:MainUI
+connectionDone	ui/tabs/ParamTab.py	/^    def connectionDone(self, linkURI):$/;"	m	class:ParamTab
+connectionDone	ui/toolboxes/DebugDriverToolbox.py	/^    def connectionDone(self, linkURI):$/;"	m	class:DebugDriverToolbox
+connectionDoneSignal	ui/main.py	/^    connectionDoneSignal = pyqtSignal(str)$/;"	v	class:MainUI
+connectionDoneSignal	ui/tabs/ParamTab.py	/^    connectionDoneSignal = pyqtSignal(str)$/;"	v	class:ParamTab
+connectionDoneSignal	ui/toolboxes/DebugDriverToolbox.py	/^    connectionDoneSignal = pyqtSignal(str)$/;"	v	class:DebugDriverToolbox
+connectionFailed	ui/dialogs/bootloader.py	/^    def connectionFailed(self):$/;"	m	class:BootloaderDialog
+connectionFailed	ui/main.py	/^    def connectionFailed(self, linkURI, error):$/;"	m	class:MainUI
+connectionFailedSignal	ui/main.py	/^    connectionFailedSignal = pyqtSignal(str, str)$/;"	v	class:MainUI
+connectionFinishedSignal	ui/tabs/FlightTab.py	/^    connectionFinishedSignal = pyqtSignal(str)$/;"	v	class:FlightTab
+connectionInitiatedSignal	ui/main.py	/^    connectionInitiatedSignal = pyqtSignal(str)$/;"	v	class:MainUI
+connectionLost	ui/main.py	/^    def connectionLost(self, linkURI, msg):$/;"	m	class:MainUI
+connectionLostSignal	ui/main.py	/^    connectionLostSignal = pyqtSignal(str, str)$/;"	v	class:MainUI
+console_class	ui/toolboxes/ConsoleToolbox.py	/^console_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/toolboxes\/consoleToolbox.ui")[0]$/;"	v
+console_tab_class	ui/tabs/ConsoleTab.py	/^console_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/tabs\/consoleTab.ui")[0]$/;"	v
+createConfigFromSelection	ui/dialogs/logconfigdialogue.py	/^    def createConfigFromSelection(self):$/;"	m	class:LogConfigDialogue
+debugdriver_tab_class	ui/toolboxes/DebugDriverToolbox.py	/^debugdriver_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/toolboxes\/debugDriverToolbox.ui")[0]$/;"	v
+decodeSize	ui/dialogs/logconfigdialogue.py	/^    def decodeSize(self, s):$/;"	m	class:LogConfigDialogue
+deleteConfig	ui/dialogs/inputconfigdialogue.py	/^    def deleteConfig(self):$/;"	m	class:InputConfigDialogue
+detectAxisVarSignal	utils/input.py	/^    detectAxisVarSignal = pyqtSignal()$/;"	v	class:JoystickReader
+device_discovery	ui/main.py	/^    def device_discovery(self, devs):$/;"	m	class:MainUI
+disable	ui/toolboxes/ConsoleToolbox.py	/^    def disable(self):$/;"	m	class:ConsoleToolbox
+disable	ui/toolboxes/CrtpSharkToolbox.py	/^    def disable(self):$/;"	m	class:CrtpSharkToolbox
+disable	ui/toolboxes/DebugDriverToolbox.py	/^    def disable(self):$/;"	m	class:DebugDriverToolbox
+disableRawReading	utils/input.py	/^    def disableRawReading(self):$/;"	m	class:JoystickReader
+disableRawReading	utils/pygamereader.py	/^    def disableRawReading(self):$/;"	m	class:PyGameReader
+disconnected	ui/tabs/FlightTab.py	/^    def disconnected(self, linkURI):$/;"	m	class:FlightTab
+disconnected	ui/tabs/LogTab.py	/^    def disconnected(self, linkname):$/;"	m	class:LogTab
+disconnected	ui/tabs/ParamTab.py	/^    def disconnected(self, linkname):$/;"	m	class:ParamTab
+disconnected	ui/toolboxes/DebugDriverToolbox.py	/^    def disconnected(self, linkURI):$/;"	m	class:DebugDriverToolbox
+disconnectedSignal	ui/dialogs/bootloader.py	/^    disconnectedSignal = pyqtSignal()$/;"	v	class:CrazyloadThread
+disconnectedSignal	ui/main.py	/^    disconnectedSignal = pyqtSignal(str)$/;"	v	class:MainUI
+disconnectedSignal	ui/tabs/FlightTab.py	/^    disconnectedSignal = pyqtSignal(str)$/;"	v	class:FlightTab
+disconnectedSignal	ui/tabs/LogTab.py	/^    disconnectedSignal = pyqtSignal(str)$/;"	v	class:LogTab
+disconnectedSignal	ui/tabs/ParamTab.py	/^    disconnectedSignal = pyqtSignal(str)$/;"	v	class:ParamTab
+disconnectedSignal	ui/toolboxes/DebugDriverToolbox.py	/^    disconnectedSignal = pyqtSignal(str)$/;"	v	class:DebugDriverToolbox
+discovery_signal	utils/input.py	/^    discovery_signal = pyqtSignal(object)$/;"	v	class:JoystickReader
+doAxisDetect	ui/dialogs/inputconfigdialogue.py	/^    def doAxisDetect(self, varname, caption, message):$/;"	m	class:InputConfigDialogue
+doButtonDetect	ui/dialogs/inputconfigdialogue.py	/^    def doButtonDetect(self, varname, caption, message):$/;"	m	class:InputConfigDialogue
+doLogConfigDialogue	ui/main.py	/^    def doLogConfigDialogue(self):$/;"	m	class:MainUI
+drawAxis	ui/widgets/rtplotwidget.py	/^    def drawAxis(self, painter):$/;"	m	class:FastPlotWidget
+drawData	ui/widgets/rtplotwidget.py	/^    def drawData(self, painter):$/;"	m	class:FastPlotWidget
+drawLegend	ui/widgets/rtplotwidget.py	/^    def drawLegend(self, painter):$/;"	m	class:FastPlotWidget
+drawWidget	ui/widgets/ai.py	/^    def drawWidget(self, qp):$/;"	m	class:AttitudeIndicator
+dsList	ui/tabs/PlotTab.py	/^    dsList = []$/;"	v	class:PlotTab
+emergencyStopSignal	utils/input.py	/^    emergencyStopSignal = pyqtSignal(bool)$/;"	v	class:JoystickReader
+emergencyStopStringWithText	ui/tabs/FlightTab.py	/^    def emergencyStopStringWithText(self, text):$/;"	m	class:FlightTab
+enable	ui/toolboxes/ConsoleToolbox.py	/^    def enable(self):$/;"	m	class:ConsoleToolbox
+enable	ui/toolboxes/CrtpSharkToolbox.py	/^    def enable(self):$/;"	m	class:CrtpSharkToolbox
+enable	ui/toolboxes/DebugDriverToolbox.py	/^    def enable(self):$/;"	m	class:DebugDriverToolbox
+enableRawReading	utils/input.py	/^    def enableRawReading(self, deviceId):$/;"	m	class:JoystickReader
+enableRawReading	utils/pygamereader.py	/^    def enableRawReading(self, deviceId):$/;"	m	class:PyGameReader
+failed_signal	ui/dialogs/bootloader.py	/^    failed_signal = pyqtSignal(str)$/;"	v	class:CrazyloadThread
+flight_tab_class	ui/tabs/FlightTab.py	/^flight_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/tabs\/flightTab.ui")[0]$/;"	v
+flightmodeChange	ui/tabs/FlightTab.py	/^    def flightmodeChange(self, item):$/;"	m	class:FlightTab
+forceDisconnecPressed	ui/toolboxes/DebugDriverToolbox.py	/^    def forceDisconnecPressed(self):$/;"	m	class:DebugDriverToolbox
+foundInterfaces	ui/dialogs/connectiondialogue.py	/^    def foundInterfaces(self, interfaces):$/;"	m	class:ConnectDialogue
+foundTabs	ui/tabs/__init__.py	/^    foundTabs = [os.path.splitext(os.path.basename(f))[0] for f in glob.glob(os.path.dirname(__file__)+"\/[A-Za-z]*Tab.pyc")]$/;"	v
+foundTabs	ui/tabs/__init__.py	/^foundTabs = [os.path.splitext(os.path.basename(f))[0] for f in glob.glob(os.path.dirname(__file__)+"\/[A-Za-z]*Tab.py")]$/;"	v
+foundToolboxes	ui/toolboxes/__init__.py	/^    foundToolboxes = [os.path.splitext(os.path.basename(f))[0] for f in glob.glob(os.path.dirname(__file__)+"\/[A-Za-z]*Toolbox.pyc")]$/;"	v
+foundToolboxes	ui/toolboxes/__init__.py	/^foundToolboxes = [os.path.splitext(os.path.basename(f))[0] for f in glob.glob(os.path.dirname(__file__)+"\/[A-Za-z]*Toolbox.py")]$/;"	v
+get	utils/config.py	/^    def get(self, key):$/;"	m	class:Config
+getAddress	utils/logconfigreader.py	/^    def getAddress(self):$/;"	m	class:LogVariable
+getAvailableDevices	utils/input.py	/^    def getAvailableDevices(self):$/;"	m	class:JoystickReader
+getAvailableDevices	utils/pygamereader.py	/^    def getAvailableDevices(self):$/;"	m	class:PyGameReader
+getAxisLines	ui/widgets/rtplotwidget.py	/^    def getAxisLines(self):$/;"	m	class:PlotAxis
+getDataRangeMax	utils/logconfigreader.py	/^    def getDataRangeMax(self):$/;"	m	class:LogConfig
+getDataRangeMin	utils/logconfigreader.py	/^    def getDataRangeMin(self):$/;"	m	class:LogConfig
+getFetchAndStorageString	utils/logconfigreader.py	/^    def getFetchAndStorageString(self):$/;"	m	class:LogVariable
+getFetchAs	utils/logconfigreader.py	/^    def getFetchAs(self):$/;"	m	class:LogVariable
+getLimits	ui/widgets/rtplotwidget.py	/^    def getLimits(self):$/;"	m	class:PlotAxis
+getLogConfigs	utils/logconfigreader.py	/^    def getLogConfigs(self):$/;"	m	class:LogConfigReader
+getMenuName	ui/tab.py	/^    def getMenuName(self):$/;"	m	class:Tab
+getMinMaxAxisValue	ui/widgets/rtplotwidget.py	/^    def getMinMaxAxisValue(self):$/;"	m	class:PlotDataSet
+getName	ui/toolboxes/ConsoleToolbox.py	/^    def getName(self):$/;"	m	class:ConsoleToolbox
+getName	ui/toolboxes/CrtpSharkToolbox.py	/^    def getName(self):$/;"	m	class:CrtpSharkToolbox
+getName	ui/toolboxes/DebugDriverToolbox.py	/^    def getName(self):$/;"	m	class:DebugDriverToolbox
+getName	utils/logconfigreader.py	/^    def getName(self):$/;"	m	class:LogConfig
+getName	utils/logconfigreader.py	/^    def getName(self):$/;"	m	class:LogVariable
+getNodeChildren	ui/dialogs/logconfigdialogue.py	/^    def getNodeChildren(self, treeNode):$/;"	m	class:LogConfigDialogue
+getPeriod	utils/logconfigreader.py	/^    def getPeriod(self):$/;"	m	class:LogConfig
+getStoredAs	utils/logconfigreader.py	/^    def getStoredAs(self):$/;"	m	class:LogVariable
+getStoredFetchAs	utils/logconfigreader.py	/^    def getStoredFetchAs(self):$/;"	m	class:LogVariable
+getTabName	ui/tab.py	/^    def getTabName(self):$/;"	m	class:Tab
+getTabName	ui/toolboxes/CrtpSharkToolbox.py	/^    def getTabName(self):$/;"	m	class:CrtpSharkToolbox
+getTabName	ui/toolboxes/DebugDriverToolbox.py	/^    def getTabName(self):$/;"	m	class:DebugDriverToolbox
+getVarType	utils/logconfigreader.py	/^    def getVarType(self):$/;"	m	class:LogVariable
+getVariables	utils/logconfigreader.py	/^    def getVariables(self):$/;"	m	class:LogConfig
+get_config	utils/config_manager.py	/^    def get_config(self, config_name):$/;"	m	class:ConfigManager
+get_list_of_configs	utils/config_manager.py	/^    def get_list_of_configs(self):$/;"	m	class:ConfigManager
+getinstance	utils/singleton.py	/^    def getinstance():$/;"	f	function:Singleton
+initUI	plottest.py	/^    def initUI(self):$/;"	m	class:PlotTest
+initUI	ui/widgets/ai.py	/^        def initUI(self):$/;"	m	class:AttitudeIndicator.Example
+initiateColdBoot	ui/dialogs/bootloader.py	/^    def initiateColdBoot(self, linkURI):$/;"	m	class:CrazyloadThread
+initiateColdBootSignal	ui/dialogs/bootloader.py	/^    initiateColdBootSignal = pyqtSignal(str)    $/;"	v	class:CrazyloadThread
+initiateColdboot	ui/dialogs/bootloader.py	/^    def initiateColdboot(self):$/;"	m	class:BootloaderDialog
+inputConfig	utils/input.py	/^    inputConfig = []$/;"	v	class:JoystickReader
+inputDeviceError	ui/main.py	/^    def inputDeviceError(self, error):$/;"	m	class:MainUI
+inputDeviceErrorSignal	utils/input.py	/^    inputDeviceErrorSignal = pyqtSignal('QString')$/;"	v	class:JoystickReader
+inputUpdateSignal	utils/input.py	/^    inputUpdateSignal = pyqtSignal(float, float, float, float)$/;"	v	class:JoystickReader
+interfaceFoundSignal	ui/dialogs/connectiondialogue.py	/^    interfaceFoundSignal = pyqtSignal(object)$/;"	v	class:ScannerThread
+interfaceSelected	ui/dialogs/connectiondialogue.py	/^    def interfaceSelected(self, listItem):$/;"	m	class:ConnectDialogue
+isSavingToFile	ui/widgets/plotwidget.py	/^    def isSavingToFile(self):$/;"	m	class:PlotWidget
+isTocVariable	utils/logconfigreader.py	/^    def isTocVariable(self):$/;"	m	class:LogVariable
+linkQualityChanged	ui/toolboxes/DebugDriverToolbox.py	/^    def linkQualityChanged(self, value):$/;"	m	class:DebugDriverToolbox
+linkQualitySignal	ui/main.py	/^    linkQualitySignal = pyqtSignal(int)$/;"	v	class:MainUI
+loadAndFlash	ui/dialogs/bootloader.py	/^    def loadAndFlash(self, image, verify = False, startpage = 0):$/;"	m	class:CrazyloadThread
+loadConfig	ui/dialogs/inputconfigdialogue.py	/^    def loadConfig(self):$/;"	m	class:InputConfigDialogue
+loadConfig	ui/dialogs/logconfigdialogue.py	/^    def loadConfig(self):$/;"	m	class:LogConfigDialogue
+logDataReceived	ui/tabs/PlotTab.py	/^    def logDataReceived(self, data):$/;"	m	class:PlotTab
+logDataSignal	ui/tabs/PlotTab.py	/^    logDataSignal = pyqtSignal(object)$/;"	v	class:PlotTab
+logger	ui/dialogs/bootloader.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/dialogs/inputconfigdialogue.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/dialogs/logconfigdialogue.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/main.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/tab.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/tabs/ConsoleTab.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/tabs/FlightTab.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/tabs/PlotTab.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/tabs/__init__.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/toolboxes/__init__.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/widgets/plotwidget.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	ui/widgets/rtplotwidget.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	utils/config.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	utils/config_manager.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	utils/input.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	utils/logconfigreader.py	/^logger = logging.getLogger(__name__)$/;"	v
+loggingError	ui/main.py	/^    def loggingError(self, error):$/;"	m	class:MainUI
+loggingError	ui/tabs/FlightTab.py	/^    def loggingError(self):$/;"	m	class:FlightTab
+loggingError	ui/tabs/PlotTab.py	/^    def loggingError(self, err):$/;"	m	class:PlotTab
+main	cfclient.py	/^def main():$/;"	f
+main	plottest.py	/^def main():$/;"	f
+main	ui/widgets/ai.py	/^    def main():$/;"	m	class:AttitudeIndicator
+maxAngleChanged	ui/tabs/FlightTab.py	/^    def maxAngleChanged(self):$/;"	m	class:FlightTab
+maxYawRateChanged	ui/tabs/FlightTab.py	/^    def maxYawRateChanged(self):$/;"	m	class:FlightTab
+menuName	ui/tab.py	/^    menuName = "N\/A"$/;"	v	class:Tab
+minMaxThrustChanged	ui/tabs/FlightTab.py	/^    def minMaxThrustChanged(self):$/;"	m	class:FlightTab
+minimumSizeHint	ui/widgets/rtplotwidget.py	/^    def minimumSizeHint(self):$/;"	m	class:FastPlotWidget
+mousePressEvent	ui/widgets/rtplotwidget.py	/^    def mousePressEvent(self, event):$/;"	m	class:FastPlotWidget
+moveNode	ui/dialogs/logconfigdialogue.py	/^    def moveNode(self, source, target):$/;"	m	class:LogConfigDialogue
+moveNodeByName	ui/dialogs/logconfigdialogue.py	/^    def moveNodeByName(self, source, target, parentName, itemName):$/;"	m	class:LogConfigDialogue
+moveNodeItem	ui/dialogs/logconfigdialogue.py	/^    def moveNodeItem(self, source, target, item):$/;"	m	class:LogConfigDialogue
+nameModified	ui/toolboxes/CrtpSharkToolbox.py	/^    nameModified = pyqtSignal()$/;"	v	class:CrtpSharkToolbox
+newLogSetupSelected	ui/tabs/PlotTab.py	/^    def newLogSetupSelected(self, item):$/;"	m	class:PlotTab
+openConnection	ui/dialogs/connectiondialogue.py	/^    def openConnection(self):$/;"	m	class:ConnectDialogue
+packetIncoming	ui/toolboxes/CrtpSharkToolbox.py	/^    def packetIncoming(self, pk):$/;"	m	class:CrtpSharkToolbox
+paintEvent	ui/widgets/ai.py	/^    def paintEvent(self, e):$/;"	m	class:AttitudeIndicator
+paintEvent	ui/widgets/rtplotwidget.py	/^    def paintEvent(self,event=None):$/;"	m	class:FastPlotWidget
+paramUpdated	ui/tabs/ParamTab.py	/^    def paramUpdated(self, completeName, value):$/;"	m	class:ParamTab
+paramUpdatedSignal	ui/tabs/ParamTab.py	/^    paramUpdatedSignal = pyqtSignal(str, str)$/;"	v	class:ParamTab
+paramUpdatedWrapper	ui/tabs/ParamTab.py	/^    def paramUpdatedWrapper(self, name, value):$/;"	m	class:ParamTab
+param_tab_class	ui/tabs/LogTab.py	/^param_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/tabs\/logTab.ui")[0]$/;"	v
+param_tab_class	ui/tabs/ParamTab.py	/^param_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/tabs\/paramTab.ui")[0]$/;"	v
+param_tab_class	ui/toolboxes/CrtpSharkToolbox.py	/^param_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/toolboxes\/crtpSharkToolbox.ui")[0]$/;"	v
+parseAxisConfig	ui/dialogs/inputconfigdialogue.py	/^    def parseAxisConfig(self, key, axisId, scale):$/;"	m	class:InputConfigDialogue
+parseButtonConfig	ui/dialogs/inputconfigdialogue.py	/^    def parseButtonConfig(self, key, btnId, scale):$/;"	m	class:InputConfigDialogue
+pathBrowse	ui/dialogs/bootloader.py	/^    def pathBrowse(self):$/;"	m	class:BootloaderDialog
+percentageToThrust	ui/tabs/FlightTab.py	/^    def percentageToThrust(self, percentage):$/;"	m	class:FlightTab
+periodChanged	ui/dialogs/logconfigdialogue.py	/^    def periodChanged(self, value):$/;"	m	class:LogConfigDialogue
+plot_tab_class	ui/tabs/PlotTab.py	/^plot_tab_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/tabs\/plotTab.ui")[0]$/;"	v
+pluginhelper	ui/__init__.py	/^pluginhelper = PluginHelper()$/;"	v
+populateDropDown	ui/dialogs/inputconfigdialogue.py	/^    def populateDropDown(self):$/;"	m	class:InputConfigDialogue
+populateDropDown	ui/dialogs/logconfigdialogue.py	/^    def populateDropDown(self):$/;"	m	class:LogConfigDialogue
+preferedDockArea	ui/toolboxes/ConsoleToolbox.py	/^    def preferedDockArea(self):$/;"	m	class:ConsoleToolbox
+preferedDockArea	ui/toolboxes/CrtpSharkToolbox.py	/^    def preferedDockArea(self):$/;"	m	class:CrtpSharkToolbox
+preferedDockArea	ui/toolboxes/DebugDriverToolbox.py	/^    def preferedDockArea(self):$/;"	m	class:DebugDriverToolbox
+printText	ui/tabs/ConsoleTab.py	/^    def printText(self, text):$/;"	m	class:ConsoleTab
+program	ui/dialogs/bootloader.py	/^    program = pyqtSignal(str, bool)$/;"	v	class:CrazyloadThread
+programAction	ui/dialogs/bootloader.py	/^    def programAction(self):$/;"	m	class:BootloaderDialog
+programAction	ui/dialogs/bootloader.py	/^    def programAction(self, filename, verify):$/;"	m	class:CrazyloadThread
+programDone	ui/dialogs/bootloader.py	/^    def programDone(self):$/;"	m	class:BootloaderDialog
+programmed	ui/dialogs/bootloader.py	/^    programmed = pyqtSignal()$/;"	v	class:CrazyloadThread
+quickConnect	ui/main.py	/^    def quickConnect(self):$/;"	m	class:MainUI
+radioSpeedPos	ui/dialogs/bootloader.py	/^    radioSpeedPos = 2$/;"	v	class:CrazyloadThread
+rawAxisUpdate	ui/dialogs/inputconfigdialogue.py	/^    def rawAxisUpdate(self, data):$/;"	m	class:InputConfigDialogue
+rawAxisUpdateSignal	ui/dialogs/inputconfigdialogue.py	/^    rawAxisUpdateSignal = pyqtSignal(object)$/;"	v	class:RawJoystickReader
+rawButtonUpdate	ui/dialogs/inputconfigdialogue.py	/^    def rawButtonUpdate(self, data):$/;"	m	class:InputConfigDialogue
+rawButtonUpdateSignal	ui/dialogs/inputconfigdialogue.py	/^    rawButtonUpdateSignal = pyqtSignal(object)$/;"	v	class:RawJoystickReader
+readConfigAction	ui/dialogs/bootloader.py	/^    def readConfigAction(self):$/;"	m	class:CrazyloadThread
+readConfigFiles	utils/logconfigreader.py	/^    def readConfigFiles(self):$/;"	m	class:LogConfigReader
+readInput	ui/dialogs/inputconfigdialogue.py	/^    def readInput(self):$/;"	m	class:RawJoystickReader
+readInput	utils/input.py	/^    def readInput(self):$/;"	m	class:JoystickReader
+readInput	utils/pygamereader.py	/^    def readInput(self):$/;"	m	class:PyGameReader
+readRawValues	utils/input.py	/^    def readRawValues(self):$/;"	m	class:JoystickReader
+readRawValues	utils/pygamereader.py	/^    def readRawValues(self):$/;"	m	class:PyGameReader
+recalcAllComponents	ui/widgets/rtplotwidget.py	/^    def recalcAllComponents(self):$/;"	m	class:FastPlotWidget
+redrawGraph	ui/widgets/rtplotwidget.py	/^    def redrawGraph(self):$/;"	m	class:FastPlotWidget
+removeAllDatasets	ui/widgets/plotwidget.py	/^    def removeAllDatasets(self):$/;"	m	class:PlotWidget
+removeAllDatasets	ui/widgets/rtplotwidget.py	/^    def removeAllDatasets(self):$/;"	m	class:FastPlotWidget
+removeDataset	ui/widgets/plotwidget.py	/^    def removeDataset(self, dataset):$/;"	m	class:PlotWidget
+removeDataset	ui/widgets/rtplotwidget.py	/^    def removeDataset(self, dataset):$/;"	m	class:FastPlotWidget
+removeDataset	ui/widgets/rtplotwidget.py	/^    def removeDataset(self, ds):$/;"	m	class:PlotAxis
+requestConnectionSignal	ui/dialogs/connectiondialogue.py	/^    requestConnectionSignal = pyqtSignal(str)$/;"	v	class:ConnectDialogue
+rescan	ui/dialogs/connectiondialogue.py	/^    def rescan(self):$/;"	m	class:ConnectDialogue
+resetCopter	ui/dialogs/bootloader.py	/^    def resetCopter(self):$/;"	m	class:BootloaderDialog
+resetCopter	ui/dialogs/bootloader.py	/^    def resetCopter(self):$/;"	m	class:CrazyloadThread
+resetCopterSignal	ui/dialogs/bootloader.py	/^    resetCopterSignal = pyqtSignal()$/;"	v	class:CrazyloadThread
+resetTrees	ui/dialogs/logconfigdialogue.py	/^    def resetTrees(self):$/;"	m	class:LogConfigDialogue
+resizeEvent	ui/widgets/rtplotwidget.py	/^    def resizeEvent(self, event):$/;"	m	class:FastPlotWidget
+run	utils/input.py	/^    def run(self):$/;"	m	class:JoystickReader
+saveConfig	ui/dialogs/inputconfigdialogue.py	/^    def saveConfig(self):$/;"	m	class:InputConfigDialogue
+saveConfig	ui/dialogs/logconfigdialogue.py	/^    def saveConfig(self):$/;"	m	class:LogConfigDialogue
+saveLogConfigFile	utils/logconfigreader.py	/^    def saveLogConfigFile(self, logconfig):$/;"	m	class:LogConfigReader
+saveToFile	ui/tabs/PlotTab.py	/^    def saveToFile(self):$/;"	m	class:PlotTab
+saveToFileSignal	ui/widgets/plotwidget.py	/^    saveToFileSignal = pyqtSignal()$/;"	v	class:PlotWidget
+save_file	utils/config.py	/^    def save_file(self):$/;"	m	class:Config
+savingStopped	ui/tabs/PlotTab.py	/^    def savingStopped(self):$/;"	m	class:PlotTab
+scan	ui/dialogs/connectiondialogue.py	/^    def scan(self):$/;"	m	class:ScannerThread
+scanSignal	ui/dialogs/connectiondialogue.py	/^    scanSignal = pyqtSignal()$/;"	v	class:ScannerThread
+sendAllValues	ui/tabs/ParamTab.py	/^    def sendAllValues(self):$/;"	m	class:ParamTab
+sendControlSetpointSignal	utils/input.py	/^    sendControlSetpointSignal = pyqtSignal(float, float, float, int)$/;"	v	class:JoystickReader
+service_dialog_class	ui/dialogs/bootloader.py	/^service_dialog_class = uic.loadUiType(sys.path[0] + "\/cfclient\/ui\/dialogs\/bootloader.ui")[0]$/;"	v
+set	utils/config.py	/^    def set(self, key, value):$/;"	m	class:Config
+setAddress	utils/logconfigreader.py	/^    def setAddress(self, addr):$/;"	m	class:LogVariable
+setCrazyflie	utils/input.py	/^    def setCrazyflie(self, cf):$/;"	m	class:JoystickReader
+setDataRange	utils/logconfigreader.py	/^    def setDataRange(self, minVal, maxVal):$/;"	m	class:LogConfig
+setEnabled	ui/widgets/rtplotwidget.py	/^    def setEnabled(self, shouldEnable):$/;"	m	class:FastPlotWidget
+setEnabled	ui/widgets/rtplotwidget.py	/^    def setEnabled(self, shouldEnable):$/;"	m	class:PlotDataSet
+setFetchAndStorageString	utils/logconfigreader.py	/^    def setFetchAndStorageString(self, s):$/;"	m	class:LogVariable
+setLimits	ui/widgets/rtplotwidget.py	/^    def setLimits(self, limits):$/;"	m	class:PlotAxis
+setMinMaxAxisValue	ui/widgets/rtplotwidget.py	/^    def setMinMaxAxisValue(self, minValue, maxValue):$/;"	m	class:PlotDataSet
+setMotorLabelsEnabled	ui/tabs/FlightTab.py	/^    def setMotorLabelsEnabled(self, enabled):$/;"	m	class:FlightTab
+setName	utils/logconfigreader.py	/^    def setName(self, name):$/;"	m	class:LogVariable
+setPeriod	utils/logconfigreader.py	/^    def setPeriod(self, period):$/;"	m	class:LogConfig
+setPitch	ui/widgets/ai.py	/^    def setPitch(self, pitch):$/;"	m	class:AttitudeIndicator
+setRoll	ui/widgets/ai.py	/^    def setRoll(self, roll):$/;"	m	class:AttitudeIndicator
+setRollPitch	ui/widgets/ai.py	/^    def setRollPitch(self, roll, pitch):$/;"	m	class:AttitudeIndicator
+setStatusLabel	ui/dialogs/bootloader.py	/^    def setStatusLabel(self, text):$/;"	m	class:BootloaderDialog
+setTitle	ui/widgets/plotwidget.py	/^    def setTitle(self, newTitle):$/;"	m	class:PlotWidget
+setTypes	utils/logconfigreader.py	/^    def setTypes(self, storeAs, fetchAs):$/;"	m	class:LogVariable
+setUIState	ui/main.py	/^    def setUIState(self, newState, linkURI=""):$/;"	m	class:MainUI
+setUiState	ui/dialogs/bootloader.py	/^    def setUiState(self, state):$/;"	m	class:BootloaderDialog
+setZoom	ui/widgets/rtplotwidget.py	/^    def setZoom(self, factor):$/;"	m	class:FastPlotWidget
+setZoom	ui/widgets/rtplotwidget.py	/^    def setZoom(self, factor):$/;"	m	class:PlotAxis
+setZoom	ui/widgets/rtplotwidget.py	/^    def setZoom(self, zoom):$/;"	m	class:PlotDataSet
+setupParams	ui/widgets/rtplotwidget.py	/^    def setupParams(self, maxItems, maxYSpan):$/;"	m	class:PlotDataSet
+showConfigBox	ui/dialogs/inputconfigdialogue.py	/^    def showConfigBox(self, caption, message):$/;"	m	class:InputConfigDialogue
+showError	ui/dialogs/inputconfigdialogue.py	/^    def showError(self, caption, message):$/;"	m	class:InputConfigDialogue
+showErrorPopup	ui/dialogs/logconfigdialogue.py	/^    def showErrorPopup(self, caption, message):$/;"	m	class:LogConfigDialogue
+showEvent	ui/dialogs/about.py	/^    def showEvent(self, ev):$/;"	m	class:AboutDialog
+showEvent	ui/dialogs/connectiondialogue.py	/^    def showEvent(self, ev):$/;"	m	class:ConnectDialogue
+showEvent	ui/dialogs/inputconfigdialogue.py	/^    def showEvent(self, event):$/;"	m	class:InputConfigDialogue
+showEvent	ui/dialogs/logconfigdialogue.py	/^    def showEvent(self, event):$/;"	m	class:LogConfigDialogue
+sortTrees	ui/dialogs/logconfigdialogue.py	/^    def sortTrees(self):$/;"	m	class:LogConfigDialogue
+startConfigOfInputDevice	ui/dialogs/inputconfigdialogue.py	/^    def startConfigOfInputDevice(self):$/;"	m	class:InputConfigDialogue
+startInput	utils/input.py	/^    def startInput(self, device_name, config_name):$/;"	m	class:JoystickReader
+startInput	utils/pygamereader.py	/^    def startInput(self, deviceId, inputMap):$/;"	m	class:PyGameReader
+startInputSignal	utils/input.py	/^    startInputSignal = pyqtSignal(str, str)$/;"	v	class:JoystickReader
+startReading	ui/dialogs/inputconfigdialogue.py	/^    def startReading(self):$/;"	m	class:RawJoystickReader
+statusChanged	ui/dialogs/bootloader.py	/^    statusChanged = pyqtSignal(str, int)$/;"	v	class:CrazyloadThread
+statusUpdate	ui/dialogs/bootloader.py	/^    def statusUpdate(self, status, progress):$/;"	m	class:BootloaderDialog
+stopInput	utils/input.py	/^    def stopInput(self):$/;"	m	class:JoystickReader
+stopInputSignal	utils/input.py	/^    stopInputSignal = pyqtSignal()$/;"	v	class:JoystickReader
+stopReading	ui/dialogs/inputconfigdialogue.py	/^    def stopReading(self):$/;"	m	class:RawJoystickReader
+stopSaving	ui/widgets/plotwidget.py	/^    def stopSaving(self):$/;"	m	class:PlotWidget
+stopSavingSignal	ui/widgets/plotwidget.py	/^    stopSavingSignal = pyqtSignal()$/;"	v	class:PlotWidget
+tabModule	ui/tabs/__init__.py	/^    tabModule = __import__(tab, globals(), locals(), [tab], -1)$/;"	v
+tabName	ui/tab.py	/^    tabName = "N\/A"$/;"	v	class:Tab
+tbModule	ui/toolboxes/__init__.py	/^    tbModule = __import__(tb, globals(), locals(), [tb], -1)$/;"	v
+thrustLoweringSlewRateLimitChanged	ui/tabs/FlightTab.py	/^    def thrustLoweringSlewRateLimitChanged(self):$/;"	m	class:FlightTab
+thrustToPercentage	ui/tabs/FlightTab.py	/^    def thrustToPercentage(self, thrust):$/;"	m	class:FlightTab
+toggleToolbox	ui/main.py	/^    def toggleToolbox(self, display):$/;"	m	class:MainUI
+toggleVisibility	ui/tab.py	/^    def toggleVisibility(self, checked):$/;"	m	class:Tab
+toolboxes	ui/toolboxes/__init__.py	/^toolboxes = []$/;"	v
+uiSetupReady	ui/tabs/FlightTab.py	/^    def uiSetupReady(self):$/;"	m	class:FlightTab
+uiSetupReadySignal	ui/tabs/FlightTab.py	/^    uiSetupReadySignal = pyqtSignal()$/;"	v	class:FlightTab
+update	ui/tabs/ConsoleTab.py	/^    update = pyqtSignal(str)$/;"	v	class:ConsoleTab
+update	ui/toolboxes/ConsoleToolbox.py	/^    update = pyqtSignal(str)$/;"	v	class:ConsoleToolbox
+updateAxisCalculations	ui/widgets/rtplotwidget.py	/^    def updateAxisCalculations(self):$/;"	m	class:FastPlotWidget
+updateAxisConfigSignal	utils/input.py	/^    updateAxisConfigSignal = pyqtSignal(int, int, float)$/;"	v	class:JoystickReader
+updateAxisLines	ui/widgets/rtplotwidget.py	/^    def updateAxisLines(self, yTop, yBottom):$/;"	m	class:PlotAxis
+updateBatteryVoltage	ui/main.py	/^    def updateBatteryVoltage(self, data):$/;"	m	class:MainUI
+updateConfig	ui/dialogs/bootloader.py	/^    def updateConfig(self, channel, speed, rollTrim, pitchTrim):$/;"	m	class:BootloaderDialog
+updateConfigSignal	ui/dialogs/bootloader.py	/^    updateConfigSignal = pyqtSignal(int, int, float, float)$/;"	v	class:CrazyloadThread
+updateCpuIdSignal	ui/dialogs/bootloader.py	/^    updateCpuIdSignal = pyqtSignal(str)$/;"	v	class:CrazyloadThread
+updateEmergencyStop	ui/tabs/FlightTab.py	/^    def updateEmergencyStop(self, emergencyStop):$/;"	m	class:FlightTab
+updateInputControl	ui/tabs/FlightTab.py	/^    def updateInputControl(self, roll, pitch, yaw, thrust):$/;"	m	class:FlightTab
+updateMaxRPAngle	utils/input.py	/^    def updateMaxRPAngle(self, maxAngle):$/;"	m	class:JoystickReader
+updateMaxRPAngleSignal	utils/input.py	/^    updateMaxRPAngleSignal = pyqtSignal(int)$/;"	v	class:JoystickReader
+updateMaxYawRate	utils/input.py	/^    def updateMaxYawRate(self, maxRate):$/;"	m	class:JoystickReader
+updateMaxYawRateSignal	utils/input.py	/^    updateMaxYawRateSignal = pyqtSignal(int)$/;"	v	class:JoystickReader
+updateMinMaxThrust	utils/input.py	/^    def updateMinMaxThrust(self, minThrust, maxThrust):$/;"	m	class:JoystickReader
+updateMinMaxThrustSignal	utils/input.py	/^    updateMinMaxThrustSignal = pyqtSignal(int, int)$/;"	v	class:JoystickReader
+updatePacketSizeBar	ui/dialogs/logconfigdialogue.py	/^    def updatePacketSizeBar(self):$/;"	m	class:LogConfigDialogue
+updatePitch	ui/widgets/ai.py	/^        def updatePitch(self, pitch):$/;"	m	class:AttitudeIndicator.Example
+updateRoll	ui/widgets/ai.py	/^        def updateRoll(self, roll):$/;"	m	class:AttitudeIndicator.Example
+updateThrustLoweringSlewrate	utils/input.py	/^    def updateThrustLoweringSlewrate(self, thrustDownSlew, slewLimit):$/;"	m	class:JoystickReader
+updateThrustLoweringSlewrateSignal	utils/input.py	/^    updateThrustLoweringSlewrateSignal = pyqtSignal(int, int)$/;"	v	class:JoystickReader
+updateToc	ui/dialogs/logconfigdialogue.py	/^    def updateToc(self):$/;"	m	class:LogConfigDialogue
+updateXAxisLines	ui/widgets/rtplotwidget.py	/^    def updateXAxisLines(self):$/;"	m	class:FastPlotWidget
+update_trim_pitch_signal	utils/input.py	/^    update_trim_pitch_signal = pyqtSignal(float)$/;"	v	class:JoystickReader
+update_trim_roll_signal	utils/input.py	/^    update_trim_roll_signal = pyqtSignal(float)$/;"	v	class:JoystickReader
+verified	ui/dialogs/bootloader.py	/^    verified = pyqtSignal()$/;"	v	class:CrazyloadThread
+verify	ui/dialogs/bootloader.py	/^    verify = pyqtSignal()$/;"	v	class:CrazyloadThread
+verifyAction	ui/dialogs/bootloader.py	/^    def verifyAction(self):$/;"	m	class:BootloaderDialog
+verifyDone	ui/dialogs/bootloader.py	/^    def verifyDone(self):$/;"	m	class:BootloaderDialog
+writeConfig	ui/dialogs/bootloader.py	/^    def writeConfig(self):$/;"	m	class:BootloaderDialog
+writeConfigAction	ui/dialogs/bootloader.py	/^    def writeConfigAction(self, channel, speed, rollTrim, pitchTrim):$/;"	m	class:CrazyloadThread
+writeConfigSignal	ui/dialogs/bootloader.py	/^    writeConfigSignal = pyqtSignal(int,int,float,float)$/;"	v	class:CrazyloadThread
+zoomIn	ui/widgets/plotwidget.py	/^    def zoomIn(self):$/;"	m	class:PlotWidget
+zoomOut	ui/widgets/plotwidget.py	/^    def zoomOut(self):$/;"	m	class:PlotWidget

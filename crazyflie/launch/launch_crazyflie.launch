@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="SDK" default="$(find crazyflie)/lib" />
+  <arg name="uri" default="radio://0/10/250K" />
+
+  <include file="$(find crazyflie)/launch/crazyflie_server.launch">
+    <arg name="crazyflieSDK" value="$(arg SDK)" />
+  </include>
+
+	<include file="$(find crazyflie)/launch/crazyflie_add.launch">
+		<arg name="uri" value="$(arg uri)" />
+	</include>
+
+</launch>

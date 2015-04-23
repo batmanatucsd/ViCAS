@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Connected	crazyflie_server.py	/^    Connected = 2$/;"	v	class:CrazyflieROS
+Connecting	crazyflie_server.py	/^    Connecting = 1$/;"	v	class:CrazyflieROS
+CrazyflieROS	crazyflie_server.py	/^class CrazyflieROS:$/;"	c
+Disconnected	crazyflie_server.py	/^    Disconnected = 0$/;"	v	class:CrazyflieROS
+__init__	crazyflie_server.py	/^    def __init__(self, link_uri, tf_prefix, roll_trim, pitch_trim):$/;"	m	class:CrazyflieROS
+_cmdVelChanged	crazyflie_server.py	/^    def _cmdVelChanged(self, data):$/;"	m	class:CrazyflieROS
+_connected	crazyflie_server.py	/^    def _connected(self, link_uri):$/;"	m	class:CrazyflieROS
+_connection_failed	crazyflie_server.py	/^    def _connection_failed(self, link_uri, msg):$/;"	m	class:CrazyflieROS
+_connection_lost	crazyflie_server.py	/^    def _connection_lost(self, link_uri, msg):$/;"	m	class:CrazyflieROS
+_disconnected	crazyflie_server.py	/^    def _disconnected(self, link_uri):$/;"	m	class:CrazyflieROS
+_emergency	crazyflie_server.py	/^    def _emergency(self, req):$/;"	m	class:CrazyflieROS
+_link_quality_updated	crazyflie_server.py	/^    def _link_quality_updated(self, percentage):$/;"	m	class:CrazyflieROS
+_log_data_imu	crazyflie_server.py	/^    def _log_data_imu(self, data):$/;"	m	class:CrazyflieROS
+_log_data_log2	crazyflie_server.py	/^    def _log_data_log2(self, timestamp, data, logconf):$/;"	m	class:CrazyflieROS
+_log_error	crazyflie_server.py	/^    def _log_error(self, logconf, msg):$/;"	m	class:CrazyflieROS
+_param_callback	crazyflie_server.py	/^    def _param_callback(self, name, value):$/;"	m	class:CrazyflieROS
+_send_setpoint	crazyflie_server.py	/^    def _send_setpoint(self):$/;"	m	class:CrazyflieROS
+_try_to_connect	crazyflie_server.py	/^    def _try_to_connect(self):$/;"	m	class:CrazyflieROS
+_update	crazyflie_server.py	/^    def _update(self):$/;"	m	class:CrazyflieROS
+_update_params	crazyflie_server.py	/^    def _update_params(self, req):$/;"	m	class:CrazyflieROS
+add_crazyflie	crazyflie_add.py	/^    add_crazyflie = rospy.ServiceProxy('\/add_crazyflie', AddCrazyflie)$/;"	v
+add_crazyflie	crazyflie_server.py	/^def add_crazyflie(req):$/;"	f
+crazyflie_connected	my_server.py	/^def crazyflie_connected(): $/;"	f
+pitch_trim	crazyflie_add.py	/^    pitch_trim = float(rospy.get_param("~pitch_trim", "0"))$/;"	v
+roll_trim	crazyflie_add.py	/^    roll_trim = float(rospy.get_param("~roll_trim", "0"))$/;"	v
+tf_prefix	crazyflie_add.py	/^    tf_prefix = rospy.get_param("~tf_prefix")$/;"	v
+uri	crazyflie_add.py	/^    uri = rospy.get_param("~uri")$/;"	v

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+	<!--<arg name="crazyflieSDK" default="/home/batman/crazyflie/crazyflie-clients-python/lib" />-->
+  <!--<arg name="crazyflieSDK" default="" />-->
+  <arg name="crazyflieSDK" default="$(find crazyflie)/lib" />
+	<!--<arg name="crazyflieSDK" default="/home/batman/crazyflie-clients-python/lib" />-->
+
+  <node pkg="crazyflie" type="crazyflie_server.py" name="crazyflie_server" output="screen">
+    <param name="crazyflieSDK" value="$(arg crazyflieSDK)" />
+  </node>
+</launch>
