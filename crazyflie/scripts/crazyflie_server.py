@@ -256,7 +256,6 @@ class CrazyflieROS:
         self._cf.commander.send_setpoint(roll, pitch, yawrate, thrust)
 
     def _cmdVelChanged(self, data):
-        rospy.loginfo("####################### state %d", self._cf.state)
         self._cmdVel = data
         if not self._isEmergency:
             self._send_setpoint()
@@ -280,7 +279,7 @@ class CrazyflieROS:
                 rospy.sleep(0.2)
             else:
                 rospy.sleep(0.5)
-                rospy.loginfo("####################### state %d", self._cf.state)
+                #rospy.loginfo("####################### state %d", self._cf.state)
         for i in range(0, 100):
             self._cf.commander.send_setpoint(0, 0, 0, 0)
             rospy.sleep(0.01)
