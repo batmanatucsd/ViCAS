@@ -1,0 +1,13 @@
+<launch>
+
+    <node pkg="leopard_imaging_camera" type="leopard_camera_stereo" name="leopard_camera_stereo" output="screen">
+    </node>
+
+    <node pkg="image_view" type="image_view" name="left_camera_image">
+        <remap from="image" to="/left/image_rgb" />
+    </node>
+    <node pkg="image_view" type="image_view" name="right_camera_image">
+        <remap from="image" to="/right/image_rgb" />
+    </node>
+
+</launch>

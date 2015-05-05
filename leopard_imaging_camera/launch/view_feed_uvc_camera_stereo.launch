@@ -1,0 +1,43 @@
+<launch>
+
+   <arg name="left_device" default="/dev/video1"/>
+   <arg name="right_device" default="/dev/video2"/>
+    <arg name="width" default="640"/>
+    <arg name="height" default="480"/>
+    <arg name="fps" default="30"/>
+<!--
+  <node pkg="uvc_camera_leopard" type="uvc_stereo_node" name="uvc_camera_stereo" output="screen" ns="stereo">
+    <param name="width" type="int" value="$(arg width)" />
+    <param name="height" type="int" value="$(arg height)" />
+    <param name="fps" type="int" value="$(arg fps)" />
+
+    <param name="frame" type="string" value="wide_stereo" />
+
+    <param name="auto_focus" type="bool" value="False" />
+    <param name="focus_absolute" type="int" value="0" />
+
+    <param name="left/device" type="string" value="$(arg left_device)"/>
+    <param name="right/device" type="string" value="$(arg right_device)" />
+    <param name="left/camera_info_url" type="string" value="file://$(find uvc_camera)/example-left.yaml" />
+    <param name="right/camera_info_url" type="string" value="file://$(find uvc_camera)/example-right.yaml" />
+  </node>
+-->    
+    <include file="$(find leopard_imaging_camera)/launch/uvc_camera_stereo.launch"/>
+<!--
+    <include file="uvc_camera_stereo.launch">
+    <arg name="width" type="int" value="$(arg width)" />
+    <arg name="height" type="int" value="$(arg height)" />
+    <arg name="fps" type="int" value="$(arg fps)" />
+    <arg name="left_device" value="$(arg left_device)" />
+    <arg name="right_device" value="$(arg right_device)" />
+        
+    </include>
+-->
+
+    <node pkg="image_view" type="stereo_view" name="stereo_image_view">
+        <remap from="stereo" to="stereo" />
+        <remap from="image" to="image_rect"/>
+    </node>
+
+
+</launch>

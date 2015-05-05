@@ -1,0 +1,10 @@
+<launch>
+
+    <node pkg="leopard_imaging_camera" type="leopard_camera" name="leopard_camera" output="screen">
+    </node>
+
+    <node pkg="image_view" type="image_view" name="camera_image">
+        <remap from="image" to="image_rgb" />
+    </node>
+
+</launch>
