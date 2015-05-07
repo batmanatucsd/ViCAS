@@ -1,0 +1,36 @@
+<launch>
+
+    <!-- clustrers of size less than cluster_size_min will be ignored (filtered in voxel filtering)-->
+    <arg name="cluster_size_min" default="12"/>
+    <!-- clustrers of size greater than cluster_size_max will be ignored (filtered in voxel filtering) -->
+    <arg name="cluster_size_max" default="25000"/>
+
+    <!-- spacing between clusters must be greater than cluster_tolerance for it to be its own cluster. 
+    larger means smaller clusters will be merged into one large cluster -->
+    <arg name="cluster_tolerance" default="0.06"/>
+
+    <!-- "Toggle the voxel filter on or off"  (recommend keeping on)-->
+    <arg name="use_voxel_filter" default="True"/>
+
+    <!-- side length of each filtered cube in meters. larger values create sparser PCDs (highly sampled) -->
+    <arg name="voxel_leaf_size" default="0.02"/>
+    
+    <!-- cluster areas between copter_area_min and copter_area_max are considered good copter candidates -->
+    <arg name="copter_area_min" default="0.001"/>
+    
+    <!-- cluster areas between copter_area_min and copter_area_max are considered good copter candidates -->
+    <arg name="copter_area_max" default="0.02"/>
+
+    <node pkg="leopard_imaging_camera" type="copterTrackerV2" name="copterTrackerV2" output="screen">
+        <param name="cluster_size_min" value="$(arg cluster_size_min)"/>
+        <param name="cluster_size_max" value="$(arg cluster_size_max)"/>
+        <param name="cluster_tolerance" value="$(arg cluster_tolerance)"/>
+
+        <param name="use_voxel_filter" value="$(arg use_voxel_filter)"/>
+        <param name="voxel_leaf_size" value="$(arg voxel_leaf_size)"/>
+        <param name="copter_area_min" value="$(arg copter_area_min)"/>
+        <param name="copter_area_max" value="$(arg copter_area_max)"/>
+
+    </node>
+
+</launch>

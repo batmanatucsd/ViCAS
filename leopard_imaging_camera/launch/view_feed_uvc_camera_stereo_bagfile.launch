@@ -1,0 +1,11 @@
+<launch>
+
+    <include file="$(find leopard_imaging_camera)/launch/uvc_camera_stereo_bagfile.launch"/>
+
+    <node pkg="image_view" type="stereo_view" name="stereo_image_view">
+        <remap from="stereo" to="stereo" />
+        <remap from="image" to="image_rect"/>
+    </node>
+
+
+</launch>

@@ -1,0 +1,4 @@
+leopard_imaging_camera/bagfiles
+leopard_imaging_camera/training
+leopard_imaging_camera/stereoCalibration
+*.swp

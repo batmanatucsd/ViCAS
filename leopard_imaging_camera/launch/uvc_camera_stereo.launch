@@ -1,0 +1,43 @@
+<launch>
+
+   <arg name="left_device" default="/dev/video1"/>
+   <arg name="right_device" default="/dev/video2"/>
+    <arg name="width" default="640"/>
+    <arg name="height" default="480"/>
+    <arg name="fps" default="30"/>
+ 
+
+  <node pkg="uvc_camera_leopard" type="uvc_stereo_node" name="uvc_camera_stereo" ns="stereo" output="screen">
+    <param name="width" type="int" value="$(arg width)" />
+    <param name="height" type="int" value="$(arg height)" />
+    <param name="fps" type="int" value="$(arg fps)" />
+
+    <param name="frame" type="string" value="wide_stereo" />
+
+    <param name="auto_focus" type="bool" value="False" />
+    <param name="focus_absolute" type="int" value="0" />
+    <!-- other supported params: auto_exposure, exposure_absolute, brightness, power_line_frequency -->
+
+    <param name="left/device" type="string" value="$(arg left_device)"/>
+    <param name="right/device" type="string" value="$(arg right_device)" />
+    <param name="left/camera_info_url" type="string" value="file://$(find leopard_imaging_camera)/cal_left.yaml" />
+    <param name="right/camera_info_url" type="string" value="file://$(find leopard_imaging_camera)/cal_right.yaml" />
+  </node>
+    
+  <node pkg="tf" type="static_transform_publisher" name="static_camera_frame_pub" args="1 0 0 0 0 0 1 /base_link static_stereo_cam_left 100" />
+
+  <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="stereo" >
+
+    <param name="prefilter_size" value="9" />
+    <param name="prefilter_cap" value="31" />
+    <param name="correlation_window_size" value="9" />
+    <param name="min_disparity" value="14" />
+    <param name="disparity_range" value="64" />
+    <param name="uniqueness_ratio" value="15" />
+    <param name="texture_threshold" value="500" />
+    <param name="speckle_size" value="30" />
+    <param name="speckle_range" value="4" />
+
+  </node>
+
+</launch>
