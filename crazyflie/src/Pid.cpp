@@ -93,6 +93,12 @@ int main(int argc, char **argv)/*{{{*/
   ros::init(argc, argv, "pid");
   ros::NodeHandle handler;
 
+  dynamic_reconfigure::Server<crazyflie::UpdateTargetFD> server;
+  dynamic_reconfigure::Server<crazyflie::UpdateTargetFD>::CallbackType cb;
+  cb = boost::bind();
+  server.setCallBack(cb);
+
+
   Pid pidNode(handler);
   ros::spin();
 }/*}}}*/

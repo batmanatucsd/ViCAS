@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
 	message_generation
 	std_msgs
 	tf
+	dynamic_reconfigure
 )
 
 ## System dependencies are found with CMake's conventions
@@ -71,6 +72,11 @@ generate_messages(
   std_msgs
 )
 
+## Generate dynamic reconfigure options
+generate_dynamic_reconfigure_options(
+	cfg/SetPidParams.cfg
+)
+
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -106,6 +112,7 @@ include_directories(include)
 ## PID Node
 add_executable(pid src/Pid.cpp)
 add_dependencies(pid crazyflie_gencpp)
+add_dependencies(pid ${PROJECT_NAME}_gencfg)
 target_link_libraries(pid ${catkin_LIBRARIES})
 
 ## Someother Node

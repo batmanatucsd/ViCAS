@@ -3,6 +3,7 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
+#include "dynamic_reconfigure/server.h"
 #include "crazyflie/Stabilize.h"
 #include "crazyflie/UpdateTargetFD.h"
 
