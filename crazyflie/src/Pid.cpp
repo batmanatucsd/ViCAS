@@ -3,6 +3,18 @@
 // ############################################################################
 // PidParams Class Functions
 // ############################################################################
+//----- PidParams::setParams ----------------------------------------------------/*{{{*//*{{{*/
+// @parameters: doubles for kp, ki, kd
+//
+// @brief: set PID constants
+//-----------------------------------------------------------------------------/*}}}*//*}}}*/
+void PidParams::setParams(double kp, double ki, double kd) /*{{{*/
+{
+  this->kp = kp;
+  this->ki = ki;
+  this->kd = kd;
+}/*}}}*/
+
 //----- PidParams::compute ----------------------------------------------------/*{{{*/
 // @parameters: 
 //
@@ -44,6 +56,7 @@ Pid::Pid(ros::NodeHandle handler)/*{{{*/
 
   // Initialize PID params
   // TODO:
+  // i might not need to do this... bc the pid params are already initialized
   // set the pid constants
 
 }  /*}}}*/
@@ -85,6 +98,37 @@ void Pid::pid(const crazyflie::Stabilize &stabilizer)/*{{{*/
   pub.publish(msg);
 }/*}}}*/
 
+//----- Pid::pid ---------------------------------------------------------/*{{{*/
+// @parameters: dynamic reconfigure config, level 
+// @brief: callback function for dynamic reconfigure
+//         sets new PID constants dynamically
+//-----------------------------------------------------------------------------/*}}}*/
+void Pid::setParams(crazyflie::SetPidParamsConfig &config, uint32_t level) /*{{{*/
+{
+  // TODO:
+  // update the pid constants
+  // call setParams functions of the PidParams class
+
+  // PITCH 
+  pids[PITCH].kp = config.pitch_kp;
+  pids[PITCH].ki = config.pitch_ki;
+  pids[PITCH].kd = config.pitch_kd;
+
+  // ROLL
+  pids[ROLL].kp = config.roll_kp;
+  pids[ROLL].ki = config.roll_ki;
+  pids[ROLL].kd = config.roll_kd;
+
+  // YAW
+  pids[YAW].kp = config.yaw_kp;
+  pids[YAW].ki = config.yaw_ki;
+  pids[YAW].kd = config.yaw_kd;
+
+  ROS_INFO("PITCH %lf %lf %lf", pids[0].kp, pids[0].ki, pids[0].kd);
+  ROS_INFO("ROLL %lf %lf %lf", pids[0].kp, pids[0].ki, pids[0].kd);
+  ROS_INFO("YAW %lf %lf %lf", pids[0].kp, pids[0].ki, pids[0].kd);
+}/*}}}*/
+
 // ############################################################################
 // Main Function
 // ############################################################################
@@ -93,12 +137,12 @@ int main(int argc, char **argv)/*{{{*/
   ros::init(argc, argv, "pid");
   ros::NodeHandle handler;
 
-  dynamic_reconfigure::Server<crazyflie::UpdateTargetFD> server;
-  dynamic_reconfigure::Server<crazyflie::UpdateTargetFD>::CallbackType cb;
-  cb = boost::bind();
-  server.setCallBack(cb);
-
-
   Pid pidNode(handler);
+
+  dynamic_reconfigure::Server<crazyflie::SetPidParamsConfig> server;
+  dynamic_reconfigure::Server<crazyflie::SetPidParamsConfig>::CallbackType cb;
+  cb = boost::bind(&Pid::setParams, pidNode, _1, _2);
+  server.setCallback(cb);
+
   ros::spin();
 }/*}}}*/

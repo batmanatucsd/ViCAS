@@ -6,6 +6,7 @@
 #include "dynamic_reconfigure/server.h"
 #include "crazyflie/Stabilize.h"
 #include "crazyflie/UpdateTargetFD.h"
+#include "crazyflie/SetPidParamsConfig.h"
 
 enum FD {PITCH=0, ROLL, YAW, THRUST};
 
@@ -23,6 +24,7 @@ class PidParams/*{{{*/
 
     // Class Functions
     PidParams() : kp(1), ki(0), kd(0), errorSum(0), lastError(0), lastTime(0) {}
+    void setParams(double, double, double);
     double compute(double);
 };/*}}}*/
 
@@ -47,6 +49,7 @@ class Pid/*{{{*/
 
   public:
     Pid(ros::NodeHandle);
+    void setParams(crazyflie::SetPidParamsConfig &, uint32_t);
 };/*}}}*/
 
 #endif // PID_H
