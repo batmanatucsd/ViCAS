@@ -49,6 +49,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
 	FILES
 	Stabilize.msg
+  Commands.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -75,6 +76,7 @@ generate_messages(
 ## Generate dynamic reconfigure options
 generate_dynamic_reconfigure_options(
 	cfg/SetPidParams.cfg
+  cfg/SetControls.cfg
 )
 
 ###################################
@@ -114,6 +116,16 @@ add_executable(pid src/Pid.cpp)
 add_dependencies(pid crazyflie_gencpp)
 add_dependencies(pid ${PROJECT_NAME}_gencfg)
 target_link_libraries(pid ${catkin_LIBRARIES})
+
+add_executable(controller src/Controller.cpp)
+add_dependencies(controller crazyflie_gencpp)
+add_dependencies(controller ${PROJECT_NAME}_gencfg)
+target_link_libraries(controller ${catkin_LIBRARIES})
+
+add_executable(commands src/Commands.cpp)
+add_dependencies(commands crazyflie_gencpp)
+add_dependencies(commands ${PROJECT_NAME}_gencfg)
+target_link_libraries(commands ${catkin_LIBRARIES})
 
 ## Someother Node
 #add_executable(pid src/crazyflie_node.cpp)

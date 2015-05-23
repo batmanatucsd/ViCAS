@@ -2,8 +2,10 @@
 #define PID_H
 
 #include "ros/ros.h"
-#include "geometry_msgs/Twist.h"
 #include "dynamic_reconfigure/server.h"
+#include "geometry_msgs/Twist.h"
+#include "geometry_msgs/PointStamped.h"
+#include "geometry_msgs/Point.h"
 #include "crazyflie/Stabilize.h"
 #include "crazyflie/UpdateTargetFD.h"
 #include "crazyflie/SetPidParamsConfig.h"
@@ -45,7 +47,7 @@ class Pid/*{{{*/
     // Functions
     bool updateTarget(crazyflie::UpdateTargetFD::Request &,
                       crazyflie::UpdateTargetFD::Response &);
-    void pid(const crazyflie::Stabilize &);
+    void pid(const geometry_msgs::PointStamped &);
 
   public:
     Pid(ros::NodeHandle);
