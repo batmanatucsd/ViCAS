@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
 	message_generation
 	std_msgs
 	tf
+	dynamic_reconfigure
 )
 
 ## System dependencies are found with CMake's conventions
@@ -48,7 +49,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
 	FILES
 	Stabilize.msg
-#   Message2.msg
+  Commands.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -56,6 +57,7 @@ add_service_files(
   FILES
   AddCrazyflie.srv
   UpdateParams.srv
+  UpdateTargetFD.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -69,6 +71,12 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
+)
+
+## Generate dynamic reconfigure options
+generate_dynamic_reconfigure_options(
+	cfg/SetPidParams.cfg
+  cfg/SetControls.cfg
 )
 
 ###################################
@@ -96,24 +104,35 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
+include_directories(include)
 
 ## Declare a cpp library
 # add_library(crazyflie
 #   src/${PROJECT_NAME}/crazyflie.cpp
 # )
 
-## Declare a cpp executable
-# add_executable(crazyflie_node src/crazyflie_node.cpp)
+## PID Node
+add_executable(pid src/Pid.cpp)
+add_dependencies(pid crazyflie_gencpp)
+add_dependencies(pid ${PROJECT_NAME}_gencfg)
+target_link_libraries(pid ${catkin_LIBRARIES})
 
-## Add cmake target dependencies of the executable/library
-## as an example, message headers may need to be generated before nodes
-# add_dependencies(crazyflie_node crazyflie_generate_messages_cpp)
+add_executable(controller src/Controller.cpp)
+add_dependencies(controller crazyflie_gencpp)
+add_dependencies(controller ${PROJECT_NAME}_gencfg)
+target_link_libraries(controller ${catkin_LIBRARIES})
 
-## Specify libraries to link a library or executable target against
-# target_link_libraries(crazyflie_node
-#   ${catkin_LIBRARIES}
-# )
+add_executable(commands src/Commands.cpp)
+add_dependencies(commands crazyflie_gencpp)
+add_dependencies(commands ${PROJECT_NAME}_gencfg)
+target_link_libraries(commands ${catkin_LIBRARIES})
+
+## Someother Node
+#add_executable(pid src/crazyflie_node.cpp)
+#add_dependencies(pid crazyflie_generate_messages_cpp)
+#target_link_libraries(pid
+  #${catkin_LIBRARIES}
+#)
 
 #############
 ## Install ##
