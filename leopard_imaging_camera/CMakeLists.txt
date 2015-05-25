@@ -12,6 +12,7 @@ roscpp
     std_msgs
     image_transport
     dynamic_reconfigure
+    pcl_ros
 )
 find_package(PCL REQUIRED)
 set(V4L2_LIBRARIES v4l2)

@@ -59,6 +59,7 @@ class PassThrough
 
 void PassThrough::cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input)
 {
+  double begin = ros::Time::now().toSec();
   // Container for original & filtered data
   
   //pcl::PCLPointCloud2* cloud = new pcl::PCLPointCloud2; 
@@ -73,7 +74,11 @@ void PassThrough::cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input)
   // Convert to PCL data type
 //  pcl_conversions::toPCL(*input, cloud); //when using PCLPoinyCloud2
   //pcl::fromROSMsg(*input, cloud); //when using PointXYZ
+  double end_beforecvtpcl = ros::Time::now().toSec();
+  ROS_INFO("tictic_beforecvtpcl: %lf", end_beforecvtpcl-begin);
   pcl::fromROSMsg(*input, *pcloud); //when using PointXYZ
+  double end_cvtpcl = ros::Time::now().toSec();
+  ROS_INFO("tictic_cvtpcl: %lf", end_cvtpcl-begin);
 
 
   // Perform the actual filtering

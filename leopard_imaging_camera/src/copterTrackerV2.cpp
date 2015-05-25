@@ -70,21 +70,20 @@
 
 //set this
 #define TRAINING_CASCADE 0
+#define TRAINING_CASCADE_NEG 0 //set to 1 when looking training against false positives. uses classifier
 
 #define RGB_HEIGHT 480
 #define RGB_WIDTH 640
 #define CASCADE_WIDTH 100
 #define CASCADE_HEIGHT 40
 
-#define NUM_FRAMES_DELAYED 4
-
-//should match the size used for training. (NO NOT CHANGE)
-#define BOUNDING_RECT_SCALE_FACTOR 1.9 //size of image passed to classifier (how tight the image is the the copter)
+//should match the size used for training. (DO NOT CHANGE) (orig: 1.9) (close: 1.5)
+#define BOUNDING_RECT_SCALE_FACTOR 1.5 //size of image passed to classifier (how tight the image is the the copter)
 
 //set these
-#define TRAIN_PATH_NEG "//home/frank/cv_ros_ws/src/ViCAS/leopard_imaging_camera/training/neg05/"
-#define TRAIN_PATH_POS "//home/frank/cv_ros_ws/src/ViCAS/leopard_imaging_camera/training/pos05/"
-#define COPTER_CLASSIFIER_PATH "//home/frank/cv_ros_ws/src/ViCAS/leopard_imaging_camera/classifiers/crazyflie/copter_1300_1300_24/cascade.xml"
+#define TRAIN_PATH_NEG "//home/frank/cv_ros_ws/src/ViCAS/leopard_imaging_camera/training/neg16/"
+#define TRAIN_PATH_POS "//home/frank/cv_ros_ws/src/ViCAS/leopard_imaging_camera/training/pos16/"
+#define COPTER_CLASSIFIER_PATH "//home/frank/cv_ros_ws/src/ViCAS/leopard_imaging_camera/classifiers/crazyflie/copterclose_600_900/cascade.xml"
 
 
 typedef std::pair<std::string, std::vector<float> > vfh_model;
@@ -103,6 +102,7 @@ float roi_size_multiplier; //multipied by g_copter_area_max to find the length o
 bool use_roi, use_classifier;
 float roi_size_penalty_multiplier_increment;
 int roi_type;
+float stereo_min, stereo_max;
 
 class CopterTrackerV2
 {
@@ -258,8 +258,17 @@ class CopterTrackerV2
 
 void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input_cloud, const sensor_msgs::ImageConstPtr& input_img){
 
+    double begin = ros::Time::now().toSec();
     //ROS_INFO("\ngot synched callback\n");
+/*
+    geometry_msgs::Point msg_3d_test;
+    msg_3d_test.x = 1;
+    msg_3d_test.y = 1;
+    msg_3d_test.z = 1;
 
+    pub_copter_center_3d.publish(msg_3d_test);
+    return;
+/*
 
 /*
     //check if copter was previously found: for roi adjustments
@@ -269,8 +278,16 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
         shared_copter_found_reading = false;
     }
 */
+
+    double end_beforecvtpcl = ros::Time::now().toSec();
+    ROS_INFO("tictic_beforecvtpcl: %lf", end_beforecvtpcl-begin);
+
     // Convert to PCL data type
+    //TODO why does this take 0.1 seconds to finish??? too slow. fix. used to be much faster
     pcl::fromROSMsg(*input_cloud, *pcloud);
+
+    double end_cvtpcl = ros::Time::now().toSec();
+    ROS_INFO("tictic_cvtpcl: %lf", end_cvtpcl-begin);
 
     //Convert to OpenCV data type
     cv_bridge::CvImagePtr mono_orig;
@@ -294,6 +311,11 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
     //cvtColor(rgb_orig->image, gray_img, CV_RGB2GRAY);
     gray_img = mono_orig->image; //TODO consider copy here
 
+    //pre-processing. filter out things too far and too close (out of reliable stereo cam range)
+    passThrough_filter.setInputCloud (pcloud);
+    passThrough_filter.setFilterFieldName ("z");
+    passThrough_filter.setFilterLimits (stereo_min, stereo_max);
+    passThrough_filter.filter(*pcloud);
 
 
     if (copter_found){
@@ -353,6 +375,7 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
 
     //remove NaN from input cloud (all non features are NaN hence PCD is 640x480 points)
     pcl::removeNaNFromPointCloud(*pcloud, *pcloud, indecies_map);
+
 
     //sample (filter) point cloud to improve speed
     if (use_voxel_filter){
@@ -453,7 +476,8 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
     //}
 
     ROS_INFO("number of clusters processed: %d", cluster_count);
-/*
+
+ /*
     if (!shared_clusters_finalists_reading) {
         shared_clusters_finalists_writing = true;
         shared_clusters_finalists = clusters_finalists;
@@ -532,6 +556,14 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
 
         //if training, step through images and label as positive or negative
         if (TRAINING_CASCADE){
+
+            //if looking for false positives, only allow candidates that make it through current cascade to be trained on
+            if (TRAINING_CASCADE_NEG){
+                if (!isCopter(img_cropped_resized, copter_classifier)){
+                    continue;
+                }
+            }
+
             cv::waitKey(1);
 
             cv::rectangle(rgb_image, rect_adjusted, cv::Scalar(0,0,255), 4);
@@ -576,7 +608,10 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
                 filename = std::string(TRAIN_PATH_NEG) + std::string(buffer) + std::string(".pgm");
                 ROS_INFO("numNeg: %d", numNeg);
                 try {
-                        cv::imwrite(filename, img_cropped_resized);
+                        if (!cv::imwrite(filename, img_cropped_resized)){
+                            ROS_INFO("There was a problem saving the file");
+                        }
+
                     }
                     catch (std::runtime_error& ex) {
                         ROS_INFO("Exception converting image to format: %s", ex.what());
@@ -638,12 +673,13 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
         //if not using classifier, then publish all the finalist's centers and box original image
         if (!TRAINING_CASCADE && !use_classifier){
             //publish center
-            pcl::PointXYZ copter_center_rgb = calcCenter(clusters_finalists_rgb[i]);
+            //pcl::PointXYZ copter_center_rgb = calcCenter(clusters_finalists_rgb[i]);
+            copter_center = calcCenter(clusters_finalists_rgb[i]);
 
             geometry_msgs::Point msg_3d;
-            msg_3d.x = copter_center_rgb.x;
-            msg_3d.y = copter_center_rgb.y;
-            msg_3d.z = copter_center_rgb.z;
+            msg_3d.x = copter_center.x;
+            msg_3d.y = copter_center.y;
+            msg_3d.z = copter_center.z;
 
             pub_copter_center_3d.publish(msg_3d);
 
@@ -698,442 +734,9 @@ void CopterTrackerV2::cloud_img_cb(const sensor_msgs::PointCloud2ConstPtr& input
         pviewer->removeAllPointClouds();
     }
 
-}
-
-void CopterTrackerV2::cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input)
-{
-    callback_cloud_num++;
-    ROS_INFO("got cloud callback: %d", callback_cloud_num);
-
-    //check if copter was previously found: for roi adjustments
-    if (!shared_copter_found_writing){
-        shared_copter_found_reading = true;
-        copter_found = shared_copter_found;
-        shared_copter_found_reading = false;
-    }
-
-    // Convert to PCL data type
-    pcl::fromROSMsg(*input, *pcloud);
-
-
-    if (copter_found){
-        roi_size_penalty_multiplier = 1; //use normal ROI size
-        cleared_for_roi = true;
-
-        if (TRAINING_SAVING_PCD){
-            std::cout << "Do you wish to save the cluster? (y/n)" << std::endl;
-
-            if (getchar() == 'y'){
-                char buffer[10];
-                saveNum++;
-
-                sprintf(buffer, "%d", saveNum);
-                std::string filename = std::string(TRAINING_PCD_FILE_PATH) + std::string(buffer) + std::string(".pcd");
-
-                ROS_INFO("Saving Cluster to %s", filename.c_str());
-                pcl::io::savePCDFileASCII (filename.c_str(), *pcloud_copter_cand);
-            }
-        }
-    }
-    else {
-        //increase ROI when copter is not found
-        roi_size_penalty_multiplier += roi_size_penalty_multiplier_increment;
-    }
-
-    //TODO filter cloud based on copter's altitude
-    //TODO reset roi (cleared_for_roi = false) when copter's velocity doesn't match object's velocity... maybe not. wind drift may cause movement or cancel movement
-    //TODO filter based on 3D shape
-    //TODO filter on appaerance (cascade classifier)
-    //TODO visualize the ROI addCube (last one in doc)
-    //TODO filter if object is on wall or floor. (label large planes with 3 points) (from kinect cloud)
-
-    //TODO don't use ROI when stuck on a static false positive (update cleared_for_roi) (UPDATE: maybe not... when moving, nothing is static)
-    //TODO sometimes copter is detected way far back because of the shadow errors and thus the roi is set far away. fix these false positives or do initial thresh on z axis (too close or too far)
-    if (roi_type == ROI_DYNAMIC){
-        //if using roi and a copter has been previously found (applies ROI around copter's center)
-        if (!TRAINING_CASCADE && use_roi && cleared_for_roi){
-            applyDynamicROI3D(pcloud, pcloud, pcloud_roi_out, copter_center, g_copter_area_max, roi_size_multiplier, roi_size_penalty_multiplier, pviewer);
-        }
-    }
-    else if (roi_type == ROI_STATIC){
-        if (!TRAINING_CASCADE && use_roi && copter_found){
-            applyDynamicROI3D(pcloud, pcloud, pcloud_roi_out, copter_center, g_copter_area_max, roi_size_multiplier, 1, pviewer);
-        }
-    }
-    //copter_found = false;
-    //copter was found
-    if (!shared_copter_found_reading){
-        shared_copter_found_writing = true;
-        shared_copter_found = false;
-        shared_copter_found_writing = false;
-    }
-
-
-    //remove NaN from input cloud (all non features are NaN hence PCD is 640x480 points)
-    pcl::removeNaNFromPointCloud(*pcloud, *pcloud, indecies_map);
-
-    //sample (filter) point cloud to improve speed
-    if (use_voxel_filter){
-
-        voxel_grid.setInputCloud(pcloud);
-        voxel_grid.filter(*pcloud_filtered);
-    }
-    else {
-        *pcloud_filtered = *pcloud;
-    }
-
-    //check for empty pcd
-    if (pcloud_filtered->size() == 0){
-        return;
-    }
-
-    tree->setInputCloud(pcloud_filtered);
-
-
-    cluster_extractor.setInputCloud (pcloud_filtered);
-    cluster_extractor.extract (cluster_indices);
-
-
-    int cluster_count = 0;
-    int cluster_state;
-    //iterate through all extracted clusters
-    for (std::vector<pcl::PointIndices>::const_iterator it = cluster_indices.begin (); it != cluster_indices.end (); ++it)
-    {
-        pcl::PointCloud<pcl::PointXYZ>::Ptr cluster (new pcl::PointCloud<pcl::PointXYZ>);
-
-        //iterate throguh the indicies of the cluster
-        //populate cluster with the data from the point cloud at the indicies of the cluster
-        for (std::vector<int>::const_iterator pit = it->indices.begin (); pit != it->indices.end (); ++pit)
-            cluster->points.push_back (pcloud_filtered->points[*pit]); //*
-
-        cluster->width = cluster->points.size();
-        cluster->height = 1;
-        cluster->is_dense = true;
-
-
-        char cluster_id[10];
-        sprintf(cluster_id, "cloud%d", cluster_count);
-
-        //TODO min and max not globals... accessed in loop. #define or make reconfig callback a class function
-        cluster_state = filterByShapeAndSize(cluster, g_copter_area_min, g_copter_area_max, SHAPE_THRESH, cluster_id);
-
-        if (USING_VISUALIZER){
-            if (vis_method == VIS_METH_ALL_CLUSTERS){
-                pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color = getClusterColor(pcloud_filtered, cluster_count);
-                pviewer->addPointCloud<pcl::PointXYZ> (cluster, single_color, cluster_id);
-            }
-            else if (vis_method == VIS_METH_CLUSTER_STATE){
-                pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color = getClusterColorState(pcloud_filtered, cluster_state);
-                pviewer->addPointCloud<pcl::PointXYZ> (cluster, single_color, cluster_id);
-            }
-            else if (VIS_METH_OFF){
-                //do not display anything
-            }
-        }
-
-/*
-        //view the clusters //TODO make bad clusters red and good green (also yellow and white)
-        if (cluster_meets_shape_and_size){
-            ROS_INFO("%s meets the shape and size requirement", cluster_id);
-            //add final candidates to the viewer
-            pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color = getClusterColor(pcloud_filtered, cluster_count);
-            pviewer->addPointCloud<pcl::PointXYZ> (cluster, single_color, cluster_id);
-        }
-*/
-        if (cluster_state == CLUSTER_STATE_GOOD_AREA_GOOD_SHAPE){
-            copter_center = calcCenter(cluster);
-            //copter_found = true;
-            //TODO add to vector of cluster copter candidates
-            clusters_finalists.push_back(cluster);
-            pcloud_copter_cand = cluster;
-            int row_min, row_max, col_min, col_max;
-            getBoundingRect(pcloud_copter_cand, row_min, row_max, col_min, col_max);
-        }
-        else {
-            //copter_found = false;
-        }
-        cluster_count++;
-
-
-    }
-    //copter is not found if no clusters were processed
-    //if (cluster_count == 0){
-    //    copter_found = false;
-    //}
-
-    ROS_INFO("number of clusters processed: %d", cluster_count);
-
-    if (!shared_clusters_finalists_reading) {
-        shared_clusters_finalists_writing = true;
-        shared_clusters_finalists = clusters_finalists;
-        //shared_centers_3d_finalists = centers_3d_finalists;
-        shared_clusters_finalists_writing = false;
-        finalists_count_sent++;
-        ROS_INFO("sent new finalists: %d", finalists_count_sent);
-    }
-
-    // Convert to ROS data type
-    sensor_msgs::PointCloud2 output;
-    pcl::toROSMsg(*pcloud_filtered, output);
-
-    // Publish the data
-    pub_cloud.publish(output); //TODO when should this be published, if at all?
-
-    //only publish the center when a copter has been found
-    //if (copter_found){
-        /*
-        geometry_msgs::Point msg_3d;
-        msg_3d.x = copter_center.x;
-        msg_3d.y = copter_center.y;
-        msg_3d.z = copter_center.z;
-
-        pub_copter_center_3d.publish(msg_3d);
-
-        geometry_msgs::PointStamped msg_3d_s;
-        msg_3d_s.header.frame_id = "static_stereo_cam_left";
-        msg_3d_s.point = msg_3d;
-        pub_copter_center_stamped3d.publish(msg_3d_s);
-        */
-    //}
-
-    cluster_indices.clear();
-    clusters_finalists.clear();
-
-    if (USING_VISUALIZER){
-        pviewer->spinOnce();
-        pviewer->removeAllPointClouds();
-    }
-
-    //ros::Duration(2).sleep();
-
-}
-
-void CopterTrackerV2::callback_rgb(const sensor_msgs::ImageConstPtr& msg)
-{
-    callback_rgb_num++;
-    ROS_INFO("got rgb image: %d", callback_rgb_num);
-    cv_bridge::CvImagePtr mono_orig;
-
-
-    try {
-        mono_orig = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::TYPE_8UC1);
-    }
-    catch (cv_bridge::Exception& e) {
-        ROS_ERROR("cv_bridge exception: %s", e.what());
-        return;
-    }
-
-    cv::Mat mono_delayed;
-    mono_delayed = mono_orig->image; //remove this
-/*
-    if (!TRAINING_CASCADE){
-        //use an older image to match the time the point cloud was taken
-        image_queue.push(mono_orig->image);
-        if (image_queue.size() < NUM_FRAMES_DELAYED){
-            return;
-        }
-
-        mono_delayed = image_queue.front();
-        image_queue.pop();
-    }
-    else {
-        mono_delayed = mono_orig->image;
-    }
-*/
-    cv::Mat rgb_image(mono_delayed.rows, mono_delayed.cols, CV_8UC3);
-    cvtColor(mono_delayed, rgb_image, CV_GRAY2RGB);
-
-    cv::Mat img_cropped;
-    cv::Mat img_cropped_resized;
-
-    cv::Mat gray_img;
-    //cvtColor(rgb_orig->image, gray_img, CV_RGB2GRAY);
-    gray_img = mono_delayed; //TODO consider copy here
-
-    //TODO test if bluring yeilds better results
-    //cv::GaussianBlur(gray_img, gray_img, cv::Size(3,3), 3, cv::BORDER_DEFAULT);
-
-
-    if (!shared_clusters_finalists_writing){
-        shared_clusters_finalists_reading = true;
-        clusters_finalists_rgb = shared_clusters_finalists;
-        //centers_3d_finalists_rgb = shared_centers_3d_finalists;
-        shared_clusters_finalists_reading = false;
-    }
-    else {
-        ROS_INFO("finalists not ready");
-    }
-
-    if (clusters_finalists_rgb.size() > 0){
-        finalists_count_received++;
-        ROS_INFO("received new finalists: %d", finalists_count_received);
-    }
-
-    int numCopters = 0;
-    //go through each finalist and determine if it "looks" like our copter
-    for (int i = 0; i < clusters_finalists_rgb.size(); i++){
-        int row_min, row_max, col_min, col_max;
-        getBoundingRect(clusters_finalists_rgb[i], row_min, row_max, col_min, col_max);
-
-        //make box bigger by BOUNDING_RECT_SCALE_FACTOR ammount
-        cv::Rect rect_adjusted = getAdjustedRect(row_min, row_max, col_min, col_max, BOUNDING_RECT_SCALE_FACTOR);
-        if (rect_adjusted.area() <= 0) continue; //test for bad points
-
-        //then resize to 40x100
-        //cv::Rect box(col_min, row_min, col_max-col_min, row_max-row_min);
-
-        img_cropped = gray_img(rect_adjusted);
-        cv::resize(img_cropped, img_cropped_resized, cv::Size(CASCADE_WIDTH, CASCADE_HEIGHT));
-
-
-
-        //if training, step through images and label as positive or negative
-        if (TRAINING_CASCADE){
-            cv::waitKey(1);
-
-            cv::rectangle(rgb_image, rect_adjusted, cv::Scalar(0,0,255), 4);
-
-            cv::imshow("cropped iamge", img_cropped_resized);
-            cv::imshow("left_camera: training_window", rgb_image);
-
-            std::cout << "Label image positive (p), negative (n), else skip: " << std::endl;
-
-            char buffer[10];
-            int key;
-            //FOR TRAINING CASCADE CLASSIFIER
-            std::string filename;
-            key = cv::waitKey(0);
-            //if positive, save as positive
-            if (key == 112){
-                numPos++;
-                sprintf(buffer, "%d", numPos);
-                filename = std::string(TRAIN_PATH_POS) + std::string(buffer) + std::string(".pgm");
-                ROS_INFO("numPos: %d", numPos);
-                try {
-                        cv::imwrite(filename, img_cropped_resized);
-                    }
-                    catch (std::runtime_error& ex) {
-                        ROS_INFO("Exception converting image to format: %s", ex.what());
-
-                    }
-                /*
-                if (cv::imwrite(filename, *it))
-                {
-                    ROS_INFO("saved positive image number: %d", numPos);
-                }
-                else {
-                    ROS_INFO("error saving image");
-                }*/
-
-            }
-            //if negative, save as negative
-            else if (key == 110){
-                numNeg++;
-                sprintf(buffer, "%d", numNeg);
-                filename = std::string(TRAIN_PATH_NEG) + std::string(buffer) + std::string(".pgm");
-                ROS_INFO("numNeg: %d", numNeg);
-                try {
-                        cv::imwrite(filename, img_cropped_resized);
-                    }
-                    catch (std::runtime_error& ex) {
-                        ROS_INFO("Exception converting image to format: %s", ex.what());
-
-                    }
-                /*
-                if (cv::imwrite(filename, *it))
-                {
-                    ROS_INFO("saved negative image number: %d", numNeg);
-                }
-                else {
-                    ROS_INFO("error saving image");
-                }*/
-            }
-        }
-        //if not training, use existing classifier to check
-        if (!TRAINING_CASCADE && use_classifier){
-
-            //TODO assign copter found. but shared to adjust roi
-            if (isCopter(img_cropped_resized, copter_classifier)){
-                //publish center
-                pcl::PointXYZ copter_center_rgb = calcCenter(clusters_finalists_rgb[i]);
-
-                geometry_msgs::Point msg_3d;
-                msg_3d.x = copter_center_rgb.x;
-                msg_3d.y = copter_center_rgb.y;
-                msg_3d.z = copter_center_rgb.z;
-
-                pub_copter_center_3d.publish(msg_3d);
-
-                geometry_msgs::PointStamped msg_3d_s;
-                msg_3d_s.header.frame_id = "static_stereo_cam_left";
-                msg_3d_s.point = msg_3d;
-                pub_copter_center_stamped3d.publish(msg_3d_s);
-
-                //box copter in orig image
-                cv::rectangle(rgb_image, rect_adjusted, cv::Scalar(0,0,255), 4);
-
-
-                numCopters++;
-                if (numCopters > 1){
-                    ROS_INFO("WARNING: More than one copter was found in the scene!");
-                }
-
-                //copter was found
-                if (!shared_copter_found_reading){
-                    shared_copter_found_writing = true;
-                    shared_copter_found = true;
-                    shared_copter_found_writing = false;
-                }
-            }
-
-
-        }
-
-        //if not using classifier, then publish all the finalist's centers and box original image
-        if (!TRAINING_CASCADE && !use_classifier){
-            //publish center
-            pcl::PointXYZ copter_center_rgb = calcCenter(clusters_finalists_rgb[i]);
-
-            geometry_msgs::Point msg_3d;
-            msg_3d.x = copter_center_rgb.x;
-            msg_3d.y = copter_center_rgb.y;
-            msg_3d.z = copter_center_rgb.z;
-
-            pub_copter_center_3d.publish(msg_3d);
-
-            geometry_msgs::PointStamped msg_3d_s;
-            msg_3d_s.header.frame_id = "static_stereo_cam_left";
-            msg_3d_s.point = msg_3d;
-            pub_copter_center_stamped3d.publish(msg_3d_s);
-
-            //box copter in orig image
-            cv::rectangle(rgb_image, rect_adjusted, cv::Scalar(0,0,255), 4);
-
-
-            numCopters++;
-            if (numCopters > 1){
-                ROS_INFO("WARNING: More than one copter was found in the scene. Consider using a classifier!");
-            }
-
-            //copter was found
-            if (!shared_copter_found_reading){
-                shared_copter_found_writing = true;
-                shared_copter_found = true;
-                shared_copter_found_writing = false;
-            }
-
-        }
-
-    }
-
-    cv::waitKey(1);
-    cv::imshow("left_camera: published copter location", rgb_image);
-
-    //cv_bridge::CvImage rgb_image_bridge(rgb_image, sensor_msgs::image_encodings::TYPE_8UC3);
-    //image_pub.publish(rgb_image_bridge.toImageMsg());
-    sensor_msgs::ImagePtr msg_rgb = cv_bridge::CvImage(std_msgs::Header(), "bgr8", rgb_image).toImageMsg();
-    image_pub.publish(msg_rgb);
-
+    double end = ros::Time::now().toSec();
+    double diff = end-begin;
+    ROS_INFO("tictoc: %lf seconds", diff);
 
 }
 
@@ -1653,6 +1256,8 @@ void callback_reconfig(leopard_imaging_camera::copterTrackerV2Config &config, ui
 
     roi_type = config.roiType;
     use_classifier = config.use_classifier;
+    stereo_min = config.stereo_min;
+    stereo_max = config.stereo_max;
 
 }
 

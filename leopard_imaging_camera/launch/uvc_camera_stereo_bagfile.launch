@@ -7,7 +7,7 @@
     <param name="prefilter_size" value="9" />
     <param name="prefilter_cap" value="31" />
     <param name="correlation_window_size" value="9" />
-    <param name="min_disparity" value="14" />
+    <param name="min_disparity" value="0" />
     <param name="disparity_range" value="64" />
     <param name="uniqueness_ratio" value="15" />
     <param name="texture_threshold" value="500" />

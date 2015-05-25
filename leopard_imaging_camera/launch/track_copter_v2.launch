@@ -21,6 +21,15 @@
     <!-- cluster areas between copter_area_min and copter_area_max are considered good copter candidates -->
     <arg name="copter_area_max" default="0.02"/>
 
+    <!-- min range of stereo cam in meters -->
+    <arg name="stereo_min" default=".8"/>
+    <!-- max range of stereo cam in meters -->
+    <arg name="stereo_max" default="4"/>
+
+    <arg name="ROI_size_multiplier" default="4"/> <!-- 2.25 when fromROSmsg doesn't lag-->
+    <arg name="ROI_size_penality_multiplier_increment" default=".3"/> <!-- .2 normally -->
+
+
     <node pkg="leopard_imaging_camera" type="copterTrackerV2" name="copterTrackerV2" output="screen">
         <param name="cluster_size_min" value="$(arg cluster_size_min)"/>
         <param name="cluster_size_max" value="$(arg cluster_size_max)"/>
@@ -30,6 +39,12 @@
         <param name="voxel_leaf_size" value="$(arg voxel_leaf_size)"/>
         <param name="copter_area_min" value="$(arg copter_area_min)"/>
         <param name="copter_area_max" value="$(arg copter_area_max)"/>
+
+        <param name="stereo_min" value="$(arg stereo_min)"/>
+        <param name="stereo_max" value="$(arg stereo_max)"/>
+
+        <param name="ROI_size_multiplier" value="$(arg ROI_size_multiplier)"/>
+        <param name="ROI_size_penality_multiplier_increment" value="$(arg ROI_size_penality_multiplier_increment)"/>
 
     </node>
 
