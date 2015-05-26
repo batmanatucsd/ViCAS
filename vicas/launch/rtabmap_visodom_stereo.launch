@@ -1,0 +1,7 @@
+<launch>
+
+
+	<node pkg="rtabmap_ros" type="stereo_odometry" name="stereo_odometer" output="screen" ns="stereo">
+	</node>
+	
+</launch>

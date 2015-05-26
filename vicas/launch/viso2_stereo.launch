@@ -1,0 +1,9 @@
+<launch>
+
+	<node pkg="viso2_ros" type="stereo_odometer" name="stereo_odometer" output="screen">
+		<remap from="stereo" to="/stereo"/>
+		<remap from="image" to="image_rect"/>
+        <param name="ref_frame_motion_threshold" value="5.0" />
+	</node>
+	
+</launch>

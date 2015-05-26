@@ -12,7 +12,7 @@
     <param name="height" type="int" value="$(arg height)" />
     <param name="fps" type="int" value="$(arg fps)" />
 
-    <param name="frame" type="string" value="wide_stereo" />
+    <param name="frame" type="string" value="stereo_left_optical_frame" />
 
     <param name="auto_focus" type="bool" value="False" />
     <param name="focus_absolute" type="int" value="0" />
@@ -25,6 +25,7 @@
   </node>
     
   <node pkg="tf" type="static_transform_publisher" name="static_camera_frame_pub" args="1 0 0 0 0 0 1 /base_link static_stereo_cam_left 100" />
+  <node pkg="tf" type="static_transform_publisher" name="static_stereo_left_optical_frame_pub" args="-0.0381 0.03175 0.448 -1.5708 0 -1.4835 /base_link stereo_left_optical_frame 100" />
 
   <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="stereo" >
 
