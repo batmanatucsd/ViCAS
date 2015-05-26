@@ -10,6 +10,13 @@
 #include "crazyflie/UpdateTargetFD.h"
 #include "crazyflie/SetPidParamsConfig.h"
 
+#define MAX_PITCH 6
+#define MAX_ROLL 6
+
+#define MIN_PITCH -6
+#define MIN_ROLL -6
+#define MIN_THRUST 35000
+
 enum FD {PITCH=0, ROLL, YAW, THRUST};
 
 // ############################################################################
@@ -41,8 +48,8 @@ class Pid/*{{{*/
     ros::Publisher pub;
 
     // PID 
-    geometry_msgs::Twist msg;
     PidParams pids[4];
+    geometry_msgs::Twist msg;
 
     // Functions
     bool updateTarget(crazyflie::UpdateTargetFD::Request &,
@@ -52,6 +59,7 @@ class Pid/*{{{*/
   public:
     Pid(ros::NodeHandle);
     void setParams(crazyflie::SetPidParamsConfig &, uint32_t);
+    void publish();
 };/*}}}*/
 
 #endif // PID_H

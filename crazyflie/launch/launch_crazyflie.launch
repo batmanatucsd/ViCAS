@@ -3,13 +3,24 @@
 <launch>
   <arg name="SDK" default="$(find crazyflie)/lib" />
   <arg name="uri" default="radio://0/10/250K" />
+  <arg name="inc" default="300" />
+  <arg name="initial_thrust" default="39000" />
 
   <include file="$(find crazyflie)/launch/crazyflie_server.launch">
     <arg name="crazyflieSDK" value="$(arg SDK)" />
   </include>
 
-	<include file="$(find crazyflie)/launch/crazyflie_add.launch">
-		<arg name="uri" value="$(arg uri)" />
-	</include>
+  <include file="$(find crazyflie)/launch/crazyflie_add.launch">
+	<arg name="uri" value="$(arg uri)" />
+  </include>
+
+  <node pkg="crazyflie" type="controller" name="controller" output="screen">
+    <param name="inc" value="$(arg inc)" />
+  </node>
+
+  <node pkg="crazyflie" type="pid" name="pid" output="screen">
+    <param name="initial_thrust" value="$(arg initial_thrust)" />
+  </node>
+
 
 </launch>

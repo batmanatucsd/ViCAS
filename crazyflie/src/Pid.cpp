@@ -1,5 +1,7 @@
 #include "Pid.h"
 
+double initial_thrust;
+
 // ############################################################################
 // PidParams Class Functions
 // ############################################################################
@@ -36,6 +38,9 @@ double PidParams::compute(double input)/*{{{*/
   lastTime = now;
   lastError = error;
 
+  ROS_INFO("error = %lf,   dError = %lf ", error, dError);
+  ROS_INFO("result = %lf", kp*error + ki*errorSum + kd*dError);
+
   // return output
   return kp*error + ki*errorSum + kd*dError;
 }/*}}}*/
@@ -56,23 +61,24 @@ Pid::Pid(ros::NodeHandle handler)/*{{{*/
   pub = handler.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
   sub = handler.subscribe("/copter_center_stamped_3d", 100, &Pid::pid, this);
 
-  this->msg.linear.z = 37000; // initial thrust
+  this->msg.linear.z = initial_thrust; // initial thrust
+
 
   // Initialize PID params
   // TODO:
   // i might NOT need to do this... bc the pid params are already initialized
   // set the pid constants
   // PITCH 
-  pids[PITCH].target = 0.1; 
-  pids[PITCH].setParams(1, 0, 0);
+  pids[PITCH].target = 0.0; 
+  pids[PITCH].setParams(9.5, 0, 0);
 
   // ROLL
-  pids[ROLL].target = 1;
-  pids[ROLL].setParams(1, 0, 0);
+  pids[ROLL].target = 1.7;
+  pids[ROLL].setParams(5.5, 0, 0);
 
   // THRUST
-  pids[THRUST].target = 0.1; 
-  pids[THRUST].setParams(250, 0, 0);
+  pids[THRUST].target = -0.2; 
+  pids[THRUST].setParams(786, 0, 0);
 
 }  /*}}}*/
 
@@ -105,9 +111,9 @@ bool Pid::updateTarget(crazyflie::UpdateTargetFD::Request &newTarget,/*{{{*/
 // @brief: callback function for the subcriber
 //         calculates adjustment values with PID and publishes new msg
 //-----------------------------------------------------------------------------/*}}}*/
-void Pid::pid(const geometry_msgs::PointStamped  &target)/*{{{*/
+void Pid::pid(const geometry_msgs::PointStamped  &input)/*{{{*/
 {
-  // change it so that the target value is a target 3D point
+  // change it so that the input value is a input 3D point
   // and the input value for pid computation is the 3D point of the quadcopter
 
   // from 3D point  
@@ -120,22 +126,26 @@ void Pid::pid(const geometry_msgs::PointStamped  &target)/*{{{*/
   //msg.linear.y = stabilizer.roll;
   //msg.linear.z = stabilizer.thrust;
   //msg.angular.z = stabilizer.yaw;
+  ROS_INFO("x: %lf    y: %lf    z: %lf",  input.point.x, input.point.y, input.point.z);
 
   // calculate pid
-  this->msg.linear.x += pids[PITCH].compute(target.point.x);
-  this->msg.linear.y += pids[ROLL].compute(target.point.z);
-  this->msg.linear.z -= pids[THRUST].compute(target.point.y);
+  ROS_INFO("######## pitch #######");
+  this->msg.linear.x = pids[PITCH].compute(input.point.x);
+  ROS_INFO("######## roll #######");
+  this->msg.linear.y = pids[ROLL].compute(input.point.z);
+  ROS_INFO("######## thrust #######");
+  this->msg.linear.z -= pids[THRUST].compute(input.point.y);
   //this->msg.angular.z += pids[YAW].compute(stabilizer.yaw);
  
   // Max Values
-  this->msg.linear.x = (this->msg.linear.x > 30) ? 30 : this->msg.linear.x;
-  this->msg.linear.y = (this->msg.linear.y > 30) ? 30 : this->msg.linear.y;
+  this->msg.linear.x = (this->msg.linear.x > MAX_PITCH) ? MAX_PITCH : this->msg.linear.x;
+  this->msg.linear.y = (this->msg.linear.y > MAX_ROLL) ? MAX_ROLL : this->msg.linear.y;
   // max value for the thrust is set in the python api
 
   // Min Values
-  this->msg.linear.x = (this->msg.linear.x < -30) ? -30 : this->msg.linear.x;
-  this->msg.linear.y = (this->msg.linear.y < -30) ? -30 : this->msg.linear.y;
-  this->msg.linear.z = (this->msg.linear.z < 10000) ? 10000 : this->msg.linear.z;
+  this->msg.linear.x = (this->msg.linear.x < MIN_PITCH) ? MIN_PITCH : this->msg.linear.x;
+  this->msg.linear.y = (this->msg.linear.y < MIN_ROLL) ? MIN_ROLL : this->msg.linear.y;
+  this->msg.linear.z = (this->msg.linear.z < MIN_THRUST) ? MIN_THRUST : this->msg.linear.z;
 
   ROS_INFO("pitch: %lf    roll: %lf    thrust: %lf",  this->msg.linear.x, this->msg.linear.y, this->msg.linear.z);
 }/*}}}*/
@@ -162,6 +172,8 @@ void Pid::setParams(crazyflie::SetPidParamsConfig &config, uint32_t level) /*{{{
   // THRUST
   // pids[THRUST].setParams(config.thrust_kp, config.thrust_ki, config.thrust_kd);
 
+  initial_thrust = config.initial_thrust;
+
   ROS_INFO("PITCH %lf %lf %lf", pids[PITCH].kp, pids[PITCH].ki, pids[PITCH].kd);
   ROS_INFO("ROLL %lf %lf %lf", pids[ROLL].kp, pids[ROLL].ki, pids[ROLL].kd);
   ROS_INFO("YAW %lf %lf %lf", pids[YAW].kp, pids[YAW].ki, pids[YAW].kd);
@@ -180,7 +192,11 @@ int main(int argc, char **argv)/*{{{*/
 {
   ros::init(argc, argv, "pid");
   ros::NodeHandle handler;
+  ros::NodeHandle nh("~");
   ros::Rate rate(10);
+
+  nh.param<double>("initial_thrust", initial_thrust, 37000);
+  //nh.getParam("initial_thrust", initial_thrust);
 
   Pid pidNode(handler);
 
