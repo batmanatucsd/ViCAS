@@ -67,21 +67,21 @@ int main(int argc, char **argv) /*{{{*/
       case 'u':
         msg.linear.z += inc;
         pub.publish(msg);
-        command = 'c';
+        command = 'k';
         break;
 
       case 'd':
         msg.linear.z -= inc;
         pub.publish(msg);
-        command = 'c';
+        command = 'k';
         break;
 
       case 'c':
-        pub.publish(msg);
+        pub.publish(zero);
         break;
 
       case 'k':
-        pub.publish(zero);
+        //pub.publish(zero);
         break;
 
       default:
