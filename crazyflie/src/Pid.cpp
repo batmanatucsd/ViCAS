@@ -38,6 +38,7 @@ double PidParams::compute(double input)/*{{{*/
   lastTime = now;
   lastError = error;
 
+  //ROS_INFO("error = %lf,   dError = %lf,   errorSum = %lf", error, dError, errorSum);
   ROS_INFO("error = %lf,   dError = %lf ", error, dError);
   ROS_INFO("result = %lf", kp*error + ki*errorSum + kd*dError);
 
@@ -53,33 +54,37 @@ double PidParams::compute(double input)/*{{{*/
 //
 // @brief: initialize ServiceServer, Publisher, Subscriber
 //-----------------------------------------------------------------------------/*}}}*/
-Pid::Pid(ros::NodeHandle handler)/*{{{*/
+Pid::Pid(ros::NodeHandle handler) : velocity(0), last_time(ros::Time::now().toSec())/*{{{*/
 {
   // Initiate ROS stuff
   server = handler.advertiseService("/updateTargetFD", &Pid::updateTarget, this);
-  //sub = handler.subscribe("/stabilize", 100, &Pid::pid, this);
   pub = handler.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
+  sub_yaw = handler.subscribe("/stabilize", 100, &Pid::pid_yaw, this);
   sub = handler.subscribe("/copter_center_stamped_3d", 100, &Pid::pid, this);
+  sub_imu = handler.subscribe("/imu", 10, &Pid::get_velocity, this);
 
   this->msg.linear.z = initial_thrust; // initial thrust
+  //MAX_THRUST = initial_thrust;
 
-
-  // Initialize PID params
-  // TODO:
-  // i might NOT need to do this... bc the pid params are already initialized
-  // set the pid constants
+  // Initialize PID params, set the pid constants
   // PITCH 
   pids[PITCH].target = 0.0; 
-  pids[PITCH].setParams(9.5, 0, 0);
+  //pids[PITCH].setParams(7.5, 0, 0);
+  pids[PITCH].setParams(4.95, 0, 0);
 
   // ROLL
-  pids[ROLL].target = 1.7;
-  pids[ROLL].setParams(5.5, 0, 0);
+  pids[ROLL].target = 2.5;
+  //pids[ROLL].setParams(3.5, 0, 0);
+  pids[ROLL].setParams(1.95, 0, 0);
 
   // THRUST
   pids[THRUST].target = -0.2; 
-  pids[THRUST].setParams(786, 0, 0);
+  //pids[THRUST].setParams(436, 0, 0);
+  pids[THRUST].setParams(291, 0, 0);
 
+  // YAW
+  pids[YAW].target = 0;
+  pids[YAW].setParams(1.95, 0, 0);
 }  /*}}}*/
 
 //----- Pid::updateTarget -----------------------------------------------------/*{{{*/
@@ -106,6 +111,45 @@ bool Pid::updateTarget(crazyflie::UpdateTargetFD::Request &newTarget,/*{{{*/
   return true;
 }/*}}}*/
 
+//----- Pid::get_velocity ---------------------------------------------------------/*{{{*/
+// @parameters: const pointer to sensor_msgs::Imu
+// @brief: callback function for the subcriber
+//         gets velocity from the imu data
+//-----------------------------------------------------------------------------/*}}}*/
+void Pid::get_velocity(const sensor_msgs::Imu &imu)
+{
+  // Compute time
+  double now = ros::Time::now().toSec(); 
+  double timeChange = (now - this->last_time);
+  this->last_time = now;
+
+  // calculate velocity
+  double acc = imu.linear_acceleration.z - 10;
+  if(acc > 0.5 || acc < -0.5) {
+    if((this->velocity > 0.4 && acc < 0) || (this->velocity < -0.4 && acc > 0))
+      this->velocity = 0;
+    else
+      this->velocity += acc * timeChange;
+  }
+}
+
+//----- Pid::pid_yaw ---------------------------------------------------------/*{{{*/
+// @parameters: const pointer to crazyflie::Stabilize
+// @brief: callback function for the subcriber
+//         calculates pid for yaw
+//-----------------------------------------------------------------------------/*}}}*/
+void Pid::pid_yaw(const crazyflie::Stabilize &stabilizer)
+{
+  ROS_INFO("######## YAW #######");
+  this->msg.angular.z = -pids[YAW].compute(stabilizer.yaw);
+
+  // Max Values
+  this->msg.angular.z = (this->msg.angular.z > MAX_YAW) ? MAX_YAW : this->msg.angular.z;
+
+  // Min Values
+  this->msg.angular.z = (this->msg.angular.z < MIN_YAW) ? MIN_YAW : this->msg.angular.z;
+}
+
 //----- Pid::pid ---------------------------------------------------------/*{{{*/
 // @parameters: const pointer
 // @brief: callback function for the subcriber
@@ -126,20 +170,45 @@ void Pid::pid(const geometry_msgs::PointStamped  &input)/*{{{*/
   //msg.linear.y = stabilizer.roll;
   //msg.linear.z = stabilizer.thrust;
   //msg.angular.z = stabilizer.yaw;
+  ROS_INFO("######## 3D POINT #######");
   ROS_INFO("x: %lf    y: %lf    z: %lf",  input.point.x, input.point.y, input.point.z);
 
   // calculate pid
   ROS_INFO("######## pitch #######");
   this->msg.linear.x = pids[PITCH].compute(input.point.x);
   ROS_INFO("######## roll #######");
-  this->msg.linear.y = pids[ROLL].compute(input.point.z);
+  this->msg.linear.y = -pids[ROLL].compute(input.point.z);
   ROS_INFO("######## thrust #######");
-  this->msg.linear.z -= pids[THRUST].compute(input.point.y);
-  //this->msg.angular.z += pids[YAW].compute(stabilizer.yaw);
+  double pidThrustResult = pids[THRUST].compute(input.point.y);
+
+  ROS_INFO("******************* Velocity *****************");
+  ROS_INFO("Velocity %lf", this->velocity);
+
+  if(this->velocity > 0.1) { // when quadcopter is moving up
+    if(pidThrustResult < 0) // motion and correction in the same direction
+      this->msg.linear.z -= 0.2 * pidThrustResult;
+    else // motion and correction in the opposite direction
+      this->msg.linear.z -= 1.025 * pidThrustResult;
+
+  } else if(this->velocity < -0.1) { // when quadcopter is movign down
+    if(pidThrustResult < 0) // motion and correction in the opposite direction
+      this->msg.linear.z -= 3.5 * pidThrustResult;
+    else // motion and correction in the same direction
+      this->msg.linear.z -= 0.05 * pidThrustResult;
+
+  } else { // when velocity is considered too small
+    if((input.point.y > pids[THRUST].target && pidThrustResult > 0) ||
+       (input.point.y < pids[THRUST].target && pidThrustResult < 0)) // when changin directions
+      this->msg.linear.z -= pidThrustResult;
+    else
+      this->msg.linear.z -= 0.15 * pidThrustResult;
+  }
+
  
   // Max Values
   this->msg.linear.x = (this->msg.linear.x > MAX_PITCH) ? MAX_PITCH : this->msg.linear.x;
   this->msg.linear.y = (this->msg.linear.y > MAX_ROLL) ? MAX_ROLL : this->msg.linear.y;
+  //this->msg.linear.z = (this->msg.linear.z > MAX_THRUST) ? MAX_THRUST : this->msg.linear.z;
   // max value for the thrust is set in the python api
 
   // Min Values
@@ -167,7 +236,7 @@ void Pid::setParams(crazyflie::SetPidParamsConfig &config, uint32_t level) /*{{{
   pids[ROLL].setParams(config.roll_kp, config.roll_ki, config.roll_kd);
 
   // YAW
-  //pids[YAW].setParams(config.yaw_kp, config.yaw_ki, config.yaw_kd);
+  pids[YAW].setParams(config.yaw_kp, config.yaw_ki, config.yaw_kd);
 
   // THRUST
   // pids[THRUST].setParams(config.thrust_kp, config.thrust_ki, config.thrust_kd);

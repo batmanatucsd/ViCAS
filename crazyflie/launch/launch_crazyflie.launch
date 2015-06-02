@@ -4,7 +4,7 @@
   <arg name="SDK" default="$(find crazyflie)/lib" />
   <arg name="uri" default="radio://0/10/250K" />
   <arg name="inc" default="300" />
-  <arg name="initial_thrust" default="39000" />
+  <arg name="initial_thrust" default="37000" />
 
   <include file="$(find crazyflie)/launch/crazyflie_server.launch">
     <arg name="crazyflieSDK" value="$(arg SDK)" />
